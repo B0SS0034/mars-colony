@@ -1,0 +1,1 @@
+const CARDS_A = [];
