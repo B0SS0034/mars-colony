@@ -131,6 +131,7 @@ if (sceneBg) {
    var sounds = {
       swipe:   function () { tone(320, 0, 0.07, "triangle"); tone(240, 0.05, 0.09, "triangle"); },
       warning: function () { tone(180, 0, 0.15, "square", 0.08); tone(180, 0.2, 0.15, "square", 0.08); },
+      rare:    function () { tone(784, 0, 0.18, "sine", 0.1); tone(1175, 0.12, 0.35, "sine", 0.1); },
       win:     function () { [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.15, 0.3, "sine"); }); },
      lose:    function () { [392, 330, 262, 196].forEach(function (f, i) { tone(f, i * 0.2, 0.35, "sawtooth", 0.1); }); }
    };
@@ -352,6 +353,11 @@ if (sceneBg) {
     resultBox.classList.add("hidden");
     updateSceneBackground(currentCard);
     updateCardFace(currentCard); 
+    // Rare Mission Control cards get the golden look
+    const isRareCard = String(currentCard.who).indexOf("Mission Control") !== -1;
+    cardEl.classList.toggle("rare", isRareCard);
+    cardEl.parentElement.classList.toggle("rare", isRareCard); // .arena
+    if (isRareCard) Sound.play("rare");
     updateCardArtwork(currentCard);
 
     // "Mei Tanaka, Botanist" -> name + role on separate lines
@@ -440,9 +446,10 @@ if (sceneBg) {
     saveBestIfHigher();
 
     const message = chosenData && chosenData.result ? chosenData.result.trim() : "";
+    const isRare = String(currentCard.who).indexOf("Mission Control") !== -1;
 
     setTimeout(() => {
-      if (message && !skipResultsEl.checked) {
+      if (message && (!skipResultsEl.checked || isRare)) {
         pendingOutcome = outcome;
         resultText.textContent = message;
         resultBox.classList.remove("hidden");

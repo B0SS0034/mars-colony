@@ -711,3 +711,61 @@ h1 {
 
 /* Generic hidden helper (used by the Continue button) */
 .hidden { display: none !important; }
+
+/* ===== Rare Mission Control cards ===== */
+/* Rotating rays behind the card */
+.rare-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(150vw, 720px);
+  aspect-ratio: 1 / 1;
+  margin: calc(min(150vw, 720px) / -2) 0 0 calc(min(150vw, 720px) / -2);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 213, 90, 0.55) 0deg 7deg,
+    rgba(255, 213, 90, 0) 7deg 20deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  animation: raysSpin 14s linear infinite;
+  z-index: 0;
+}
+.arena.rare .rare-rays { opacity: 1; }
+.card { z-index: 1; }
+
+@keyframes raysSpin { to { transform: rotate(360deg); } }
+
+/* Golden frame (plain card) */
+.card.rare {
+  border-color: #ffd24a;
+  box-shadow: inset 0 0 0 3px #b8860b, 0 0 30px 6px rgba(255, 200, 60, 0.6), 0 14px 34px rgba(0, 0, 0, 0.65);
+}
+/* Golden frame (image card) */
+.card.has-face.rare {
+  box-shadow: 0 0 0 4px #ffd24a, 0 0 0 7px #b8860b, 0 0 34px 8px rgba(255, 200, 60, 0.65);
+}
+/* Shine sweep across the card */
+.card.rare::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  background-size: 250% 100%;
+  animation: rareShine 3.2s ease-in-out infinite;
+}
+@keyframes rareShine {
+  from { background-position: 150% 0; }
+  to   { background-position: -50% 0; }
+}
+/* Consequence panel matches the golden frame */
+.arena.rare .result-box { border-color: #ffd24a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rare-rays, .card.rare::after { animation: none; }
+}
