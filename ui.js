@@ -150,7 +150,6 @@ if (sceneBg) {
     const best = loadBest();
     startBest.textContent = best > 0 ? `Best result: ${best} weeks` : "";
   }
-  }
 
       
 
@@ -397,7 +396,7 @@ if (sceneBg) {
     showScreen(gameScreen);
     renderState();
     loadNextCard();
-  
+  }
 
   function finishResultStep() {
     if (!pendingOutcome) return;
