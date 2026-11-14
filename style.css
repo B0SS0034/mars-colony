@@ -708,3 +708,6 @@ h1 {
 
 .best-score { opacity: 0.85; margin: 8px 0; }
 .best-score:empty { display: none; }
+
+/* Generic hidden helper (used by the Continue button) */
+.hidden { display: none !important; }

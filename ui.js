@@ -143,8 +143,9 @@ if (sceneBg) {
   // True if any meter is close to 0 or 100
   function isAnyMeterDanger(s) {
     return METER_KEYS.some(function (k) { return s[k] <= 15 || s[k] >= 85; });
-  
-    // Show the saved best result on the start screen (hidden if no game played yet)
+  }
+
+  // Show the saved best result on the start screen (hidden if no game played yet)
   function renderStartBest() {
     const best = loadBest();
     startBest.textContent = best > 0 ? `Best result: ${best} weeks` : "";
