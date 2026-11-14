@@ -35,6 +35,11 @@
     bgLayerA.alt = "";
     sceneBg.appendChild(bgLayerA);
   }
+  // Убираем «запасной» CSS-фон, который просвечивает при затухании картинки
+if (sceneBg) {
+  sceneBg.removeAttribute("data-bg");
+  sceneBg.style.setProperty("background-image", "none", "important");
+}
 
   let currentBgKey = "";
 
@@ -151,8 +156,15 @@
     // 2. Через 0.15 с подставляем новый и плавно проявляем его (ещё 0.15 с)
     bgSwitchTimer = setTimeout(() => {
       bgLayerA.src = src;
-      bgLayerA.classList.add("active");
-      bgSwitchTimer = null;
+      const show = () => {
+        bgLayerA.classList.add("active");
+       bgSwitchTimer = null;
+     };
+      if (bgLayerA.decode) {
+       bgLayerA.decode().then(show).catch(show);
+      } else {
+       show();
+      }
     }, 150);
   }
 
