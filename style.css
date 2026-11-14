@@ -769,3 +769,28 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   .rare-rays, .card.rare::after { animation: none; }
 }
+
+/* Rotating rays behind the card.
+   position: fixed keeps them out of the page layout, so they cannot
+   cause scrollbars or shifts. Hidden completely on normal cards. */
+.rare-rays {
+  display: none;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  width: min(150vw, 720px);
+  aspect-ratio: 1 / 1;
+  margin: calc(min(150vw, 720px) / -2) 0 0 calc(min(150vw, 720px) / -2);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 213, 90, 0.55) 0deg 7deg,
+    rgba(255, 213, 90, 0) 7deg 20deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 18%, transparent 68%);
+  pointer-events: none;
+  animation: raysSpin 14s linear infinite;
+  z-index: 0;
+}
+.arena.rare .rare-rays { display: block; }
