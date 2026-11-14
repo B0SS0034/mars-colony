@@ -431,6 +431,7 @@
     window.addEventListener("keydown", onKeyDown);
 
     showScreen(startScreen);
+    preloadBackgrounds();
   }
 
   init();
