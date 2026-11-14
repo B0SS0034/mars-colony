@@ -28,17 +28,18 @@ body {
   user-select: none;
 }
 
-/* Фоны локаций — чистые картинки без цветных наложений */
+/* Фоны локаций */
 .scene-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-color: #140e0e;
+  background-color: #1c1211;
+  background-image: radial-gradient(circle at 50% 25%, #2e1815 0%, #0c090a 75%);
   background-size: cover;
   background-position: center;
   transition: background-image 0.5s ease;
-  filter: brightness(1.25) contrast(1.05);
+  filter: brightness(1.15);
 }
 
 .scene-bg[data-bg="greenhouse"] {
