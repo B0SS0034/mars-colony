@@ -28,7 +28,7 @@ body {
   user-select: none;
 }
 
-/* Динамические фоны 6 локаций */
+/* Базовый контейнер фона */
 .scene-bg {
   position: fixed;
   inset: 0;
@@ -37,56 +37,41 @@ body {
   background-color: var(--bg);
   background-size: cover;
   background-position: center;
-  transition: background 0.6s ease, filter 0.6s ease;
+  transition: background-image 0.5s ease;
+  filter: brightness(0.85); /* Делает фон чуть светлее; можете убрать эту строку или поставить 1.0 */
 }
 
+/* Слой легкого затенения, чтобы карточка читалась (никаких цветных оттенков!) */
 .scene-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(12, 9, 10, 0.35);
+  background: rgba(12, 9, 10, 0.35); /* Прозрачное черно-коричневое затенение без зелени */
 }
 
-/* 1. Оранжерея / Ботаника */
+/* Чистые картинки без наложения сторонних цветовых фильтров */
 .scene-bg[data-bg="greenhouse"] {
-  background-image:
-    linear-gradient(180deg, rgba(16, 48, 32, 0.72), rgba(10, 20, 15, 0.92)),
-    url("images/bg-greenhouse.jpg");
+  background-image: url("images/bg-greenhouse.jpg");
 }
 
-/* 2. Инженерный / Реакторный отсек */
 .scene-bg[data-bg="engineering"] {
-  background-image:
-    linear-gradient(180deg, rgba(58, 32, 14, 0.72), rgba(16, 11, 9, 0.92)),
-    url("images/bg-engineering.jpg");
+  background-image: url("images/bg-engineering.jpg");
 }
 
-/* 3. Медотсек / Лаборатория */
 .scene-bg[data-bg="medbay"] {
-  background-image:
-    linear-gradient(180deg, rgba(16, 42, 56, 0.72), rgba(10, 15, 20, 0.92)),
-    url("images/bg-medbay.jpg");
+  background-image: url("images/bg-medbay.jpg");
 }
 
-/* 4. Жилой отсек / Камбуз */
 .scene-bg[data-bg="habitat"] {
-  background-image:
-    linear-gradient(180deg, rgba(52, 34, 24, 0.72), rgba(18, 12, 10, 0.92)),
-    url("images/bg-habitat.jpg");
+  background-image: url("images/bg-habitat.jpg");
 }
 
-/* 5. Поверхность Марса / Шахты */
 .scene-bg[data-bg="surface"] {
-  background-image:
-    linear-gradient(180deg, rgba(72, 24, 14, 0.72), rgba(16, 9, 8, 0.92)),
-    url("images/bg-surface.jpg");
+  background-image: url("images/bg-surface.jpg");
 }
 
-/* 6. Командный центр / Связь с Землёй */
 .scene-bg[data-bg="command"] {
-  background-image:
-    linear-gradient(180deg, rgba(34, 22, 48, 0.72), rgba(12, 9, 14, 0.92)),
-    url("images/bg-command.jpg");
+  background-image: url("images/bg-command.jpg");
 }
 
 #app {
