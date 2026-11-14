@@ -794,3 +794,9 @@ h1 {
   z-index: 0;
 }
 .arena.rare .rare-rays { display: block; }
+
+/* Always reserve the scrollbar space so the page width never changes */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
