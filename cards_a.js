@@ -1,7 +1,10 @@
 // Survival infrastructure and resource cards for the Mars colony
+// Locations (bg): "greenhouse" | "engineering" | "medbay" | "habitat" | "surface" | "command"
 const CARDS_A = [
   {
     id: "a_01",
+    bg: "greenhouse",
+    image: "images/cards/a_01.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, the algae vats are booming, crowding the air vents. Should we harvest early for food or let them oxygenate?",
     left: {
@@ -17,6 +20,8 @@ const CARDS_A = [
   },
   {
     id: "a_02",
+    bg: "surface",
+    image: "images/cards/a_02.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, a dust storm is coating the east solar array. Sending a crew outside is risky in these winds.",
     left: {
@@ -32,6 +37,8 @@ const CARDS_A = [
   },
   {
     id: "a_03",
+    bg: "medbay",
+    image: "images/cards/a_03.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, without the Earth ship, calorie rations are too tight. People are dizzy during shifts.",
     left: {
@@ -47,6 +54,8 @@ const CARDS_A = [
   },
   {
     id: "a_04",
+    bg: "engineering",
+    image: "images/cards/a_04.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, the main CO2 scrubber has a cracked seal. Overdrive the backup or shut down to weld?",
     left: {
@@ -62,6 +71,8 @@ const CARDS_A = [
   },
   {
     id: "a_05",
+    bg: "command",
+    image: "images/cards/a_05.png",
     who: "Mission Control (Earth)",
     text: "Captain, solar flare sensors show a radiation spike incoming. Divert power to magnetic shielding now.",
     left: {
@@ -77,6 +88,8 @@ const CARDS_A = [
   },
   {
     id: "a_06",
+    bg: "greenhouse",
+    image: "images/cards/a_06.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, blight hit sector two of the potato beds. Burn the crop now or flood the bay with UV light?",
     left: {
@@ -92,6 +105,8 @@ const CARDS_A = [
   },
   {
     id: "a_07",
+    bg: "habitat",
+    image: "images/cards/a_07.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, we recovered edible yeast paste from the bio-filters. Should I blend it into tonight's stew?",
     left: {
@@ -107,6 +122,8 @@ const CARDS_A = [
   },
   {
     id: "a_08",
+    bg: "engineering",
+    image: "images/cards/a_08.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, our backup fuel cell is overpressurized. Vent oxygen inside or burn it to charge the grid?",
     left: {
@@ -122,6 +139,8 @@ const CARDS_A = [
   },
   {
     id: "a_09",
+    bg: "surface",
+    image: "images/cards/a_09.png",
     who: "Nadia Vance, Miner",
     text: "Captain, we found a shallow geothermal vent! Tapping it boosts power, or we can mine nitrate salts for crops.",
     left: {
@@ -137,6 +156,8 @@ const CARDS_A = [
   },
   {
     id: "a_10",
+    bg: "medbay",
+    image: "images/cards/a_10.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, recycled air smells like burnt wiring after the night shift. Max the scrubbers or hand out masks?",
     left: {
@@ -152,6 +173,8 @@ const CARDS_A = [
   },
   {
     id: "a_11",
+    bg: "greenhouse",
+    image: "images/cards/a_11.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, our dwarf wheat matured early under 24-hour grow lamps. Harvest a feast now or bank freeze-dried rations?",
     left: {
@@ -167,6 +190,8 @@ const CARDS_A = [
   },
   {
     id: "a_12",
+    bg: "engineering",
+    image: "images/cards/a_12.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, clear skies give us peak solar output this week. Route surplus power to grow lamps or battery banks?",
     left: {
@@ -182,6 +207,8 @@ const CARDS_A = [
   },
   {
     id: "a_13",
+    bg: "habitat",
+    image: "images/cards/a_13.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, a freezer seal failed in Storage Bay B! We must cook all 400 kilos of meat tonight or let it spoil.",
     left: {
@@ -197,6 +224,8 @@ const CARDS_A = [
   },
   {
     id: "a_14",
+    bg: "command",
+    image: "images/cards/a_14.png",
     who: "Mission Control (Earth)",
     text: "Captain, telemetry shows your electrolysis units are running rich. Keep pumping O2 or throttle back to save power?",
     left: {
@@ -212,6 +241,8 @@ const CARDS_A = [
   },
   {
     id: "a_15",
+    bg: "surface",
+    image: "images/cards/a_15.png",
     who: "Nadia Vance, Miner",
     text: "Captain, a cave-in blocked the east regolith tunnel. Blast it open with shaped charges or clear it by hand?",
     left: {
@@ -227,6 +258,8 @@ const CARDS_A = [
   },
   {
     id: "a_16",
+    bg: "medbay",
+    image: "images/cards/a_16.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, cabin oxygen is creeping high and making crews reckless. Bleed pressure outside or vent to the greenhouse?",
     left: {
@@ -242,6 +275,8 @@ const CARDS_A = [
   },
   {
     id: "a_17",
+    bg: "engineering",
+    image: "images/cards/a_17.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, the nuclear RTG core is running hot. Shunt excess heat to warm the habs or dump it via radiators?",
     left: {
@@ -257,6 +292,8 @@ const CARDS_A = [
   },
   {
     id: "a_18",
+    bg: "greenhouse",
+    image: "images/cards/a_18.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, the fruit orchard needs manual pollination this week. Pull engineers off repairs or skip the fruit crop?",
     left: {
@@ -272,6 +309,8 @@ const CARDS_A = [
   },
   {
     id: "a_19",
+    bg: "habitat",
+    image: "images/cards/a_19.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, someone hid a still behind the boilers and brewed potato moonshine. Confiscate it or allow a Friday toast?",
     left: {
@@ -287,6 +326,8 @@ const CARDS_A = [
   },
   {
     id: "a_20",
+    bg: "engineering",
+    image: "images/cards/a_20.png",
     who: "Mission Control (Earth)",
     text: "Captain, a static discharge fried your main transformer. Bypass safety breakers for full power or run on auxiliary?",
     left: {
@@ -302,6 +343,8 @@ const CARDS_A = [
   },
   {
     id: "a_21",
+    bg: "engineering",
+    image: "images/cards/a_21.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, micrometeorites punctured Airlock 3. Seal the whole wing permanently or weld a patch under pressure?",
     left: {
@@ -317,6 +360,8 @@ const CARDS_A = [
   },
   {
     id: "a_22",
+    bg: "greenhouse",
+    image: "images/cards/a_22.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, crickets in the protein farm are chirping loudly through the vents. Cull half the swarm or double feed?",
     left: {
@@ -332,6 +377,8 @@ const CARDS_A = [
   },
   {
     id: "a_23",
+    bg: "medbay",
+    image: "images/cards/a_23.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, vitamin D levels are crashing after weeks of dust clouds. Run UV tanning bays or issue bitter supplements?",
     left: {
@@ -347,6 +394,8 @@ const CARDS_A = [
   },
   {
     id: "a_24",
+    bg: "command",
+    image: "images/cards/a_24.png",
     who: "Mission Control (Earth)",
     text: "Captain, a coronal mass ejection will hit Mars in six hours. Power down life support scrubbers or risk fried circuits?",
     left: {
@@ -362,6 +411,8 @@ const CARDS_A = [
   },
   {
     id: "a_25",
+    bg: "habitat",
+    image: "images/cards/a_25.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, we found fifty crates of spicy sauce from the old crew's stash. Serve it now or trade portions for chores?",
     left: {
@@ -377,6 +428,8 @@ const CARDS_A = [
   },
   {
     id: "a_26",
+    bg: "surface",
+    image: "images/cards/a_26.png",
     who: "Nadia Vance, Miner",
     text: "Captain, our automated drill hit a pocket of trapped methane. Burn it in the turbines or flare it outside?",
     left: {
@@ -392,6 +445,8 @@ const CARDS_A = [
   },
   {
     id: "a_27",
+    bg: "surface",
+    image: "images/cards/a_27.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, dust static built up on the rover hulls. Ground them through the main grid or discharge with copper rods?",
     left: {
@@ -407,6 +462,8 @@ const CARDS_A = [
   },
   {
     id: "a_28",
+    bg: "greenhouse",
+    image: "images/cards/a_28.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, mutant fast-growing bamboo is choking the hydroponic channels. Harvest it for biomass fuel or compost?",
     left: {
@@ -422,6 +479,8 @@ const CARDS_A = [
   },
   {
     id: "a_29",
+    bg: "medbay",
+    image: "images/cards/a_29.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, three engineers caught Martian dust bronchitis. Quarantine the whole dorm or keep them on light duty?",
     left: {
@@ -437,6 +496,8 @@ const CARDS_A = [
   },
   {
     id: "a_30",
+    bg: "command",
+    image: "images/cards/a_30.png",
     who: "Mission Control (Earth)",
     text: "Captain, high-altitude winds cleared the northern ridge. Reposition mobile solar trailers now or wait until dawn?",
     left: {
@@ -452,6 +513,8 @@ const CARDS_A = [
   },
   {
     id: "a_31",
+    bg: "habitat",
+    image: "images/cards/a_31.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, soy protein vats fermented into sharp cheese! Serve it as a luxury treat or melt it into emergency rations?",
     left: {
@@ -467,6 +530,8 @@ const CARDS_A = [
   },
   {
     id: "a_32",
+    bg: "surface",
+    image: "images/cards/a_32.png",
     who: "Nadia Vance, Miner",
     text: "Captain, we uncovered an abandoned rover battery pack buried in silt. Wire it to the grid or strip it for heaters?",
     left: {
@@ -482,6 +547,8 @@ const CARDS_A = [
   },
   {
     id: "a_33",
+    bg: "engineering",
+    image: "images/cards/a_33.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, the Sabatier reactor is clogging with carbon soot. Flush it with spare oxygen or shut down fuel production?",
     left: {
@@ -497,6 +564,8 @@ const CARDS_A = [
   },
   {
     id: "a_34",
+    bg: "greenhouse",
+    image: "images/cards/a_34.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, honeybees in the dome are agitated by high CO2. Vent excess gas to the pods or cool the dome down?",
     left: {
@@ -512,6 +581,8 @@ const CARDS_A = [
   },
   {
     id: "a_35",
+    bg: "medbay",
+    image: "images/cards/a_35.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, oxygen saturation in Hab B hit 26 percent. Fire risk is rising! Cut electrolysis or open cross-vents?",
     left: {
@@ -527,6 +598,8 @@ const CARDS_A = [
   },
   {
     id: "a_36",
+    bg: "command",
+    image: "images/cards/a_36.png",
     who: "Mission Control (Earth)",
     text: "Captain, orbital radar spots a dust devil heading straight for the greenhouse roof. Raise storm shutters now?",
     left: {
@@ -542,6 +615,8 @@ const CARDS_A = [
   },
   {
     id: "a_37",
+    bg: "habitat",
+    image: "images/cards/a_37.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, algae crackers are stale and hard as slate. Spend oven power to bake fresh loaves or serve them dry?",
     left: {
@@ -557,6 +632,8 @@ const CARDS_A = [
   },
   {
     id: "a_38",
+    bg: "surface",
+    image: "images/cards/a_38.png",
     who: "Nadia Vance, Miner",
     text: "Captain, seismic tremors cracked a sealed lava tube rich in frozen CO2. Harvest it for plants or seal the breach?",
     left: {
@@ -572,6 +649,8 @@ const CARDS_A = [
   },
   {
     id: "a_39",
+    bg: "engineering",
+    image: "images/cards/a_39.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, our flywheel storage is vibrating dangerously at max RPM. Bleed power into grow lights or brake it hard?",
     left: {
@@ -587,6 +666,8 @@ const CARDS_A = [
   },
   {
     id: "a_40",
+    bg: "greenhouse",
+    image: "images/cards/a_40.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, duckweed tanks doubled overnight. Skim half for high-protein meal or let it scrub cabin air?",
     left: {
@@ -602,6 +683,8 @@ const CARDS_A = [
   },
   {
     id: "a_41",
+    bg: "medbay",
+    image: "images/cards/a_41.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, insomnia is spreading during the bright summer sols. Dim corridor lights early or prescribe herbal tea?",
     left: {
@@ -617,6 +700,8 @@ const CARDS_A = [
   },
   {
     id: "a_42",
+    bg: "command",
+    image: "images/cards/a_42.png",
     who: "Mission Control (Earth)",
     text: "Captain, we transmitted new compression firmware for your oxygen pumps. Install now during peak shift or wait?",
     left: {
@@ -632,6 +717,8 @@ const CARDS_A = [
   },
   {
     id: "a_43",
+    bg: "habitat",
+    image: "images/cards/a_43.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, an irrigation pipe burst above the dry-goods pantry. Salvage wet flour into porridge or dry it with heaters?",
     left: {
@@ -647,6 +734,8 @@ const CARDS_A = [
   },
   {
     id: "a_44",
+    bg: "surface",
+    image: "images/cards/a_44.png",
     who: "Nadia Vance, Miner",
     text: "Captain, we found pure iron ore near the south ridge. Smelt spare parts now or stockpile raw rock for later?",
     left: {
@@ -662,6 +751,8 @@ const CARDS_A = [
   },
   {
     id: "a_45",
+    bg: "engineering",
+    image: "images/cards/a_45.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, frost coated the radiator fins, trapping heat inside. Thaw them electrically or send miners with scrapers?",
     left: {
@@ -677,6 +768,8 @@ const CARDS_A = [
   },
   {
     id: "a_46",
+    bg: "greenhouse",
+    image: "images/cards/a_46.png",
     who: "Mei Tanaka, Botanist",
     text: "Captain, aphids infested the tomato vines. Release predatory ladybugs or fumigate the bay with sulfur?",
     left: {
@@ -692,6 +785,8 @@ const CARDS_A = [
   },
   {
     id: "a_47",
+    bg: "medbay",
+    image: "images/cards/a_47.png",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, pantry calories are running dangerously low. Cut non-essential EVA work to save food or push overtime?",
     left: {
@@ -707,6 +802,8 @@ const CARDS_A = [
   },
   {
     id: "a_48",
+    bg: "command",
+    image: "images/cards/a_48.png",
     who: "Mission Control (Earth)",
     text: "Captain, atmospheric pressure outside spiked after a regional storm. Run intake compressors to harvest free air?",
     left: {
@@ -722,6 +819,8 @@ const CARDS_A = [
   },
   {
     id: "a_49",
+    bg: "habitat",
+    image: "images/cards/a_49.png",
     who: "Tomasz Kowalski, Cook",
     text: "Captain, the greenhouse delivered a surprise harvest of sweet melons. Slice them for lunch or juice them for rations?",
     left: {
@@ -737,6 +836,8 @@ const CARDS_A = [
   },
   {
     id: "a_50",
+    bg: "engineering",
+    image: "images/cards/a_50.png",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, all four life-support rings are synced and humming. Run an efficiency boost or give the engineering crew rest?",
     left: {

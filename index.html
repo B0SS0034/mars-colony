@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Динамический задний фон локации -->
+  <div id="scene-bg" class="scene-bg" data-bg="command"></div>
+
   <div id="app">
     <!-- Start Screen -->
     <section id="start-screen" class="screen active">
@@ -52,15 +55,26 @@
 
       <main class="arena">
         <div id="card" class="card">
-          <div id="card-badge" class="card-badge"></div>
-          <div class="card-emblem"></div>
-          <div id="card-who" class="card-who"></div>
+          <div class="card-header">
+            <div id="card-badge" class="card-badge">
+              <span id="card-badge-text" class="card-badge-text"></span>
+            </div>
+            <div class="card-emblem"></div>
+          </div>
+
           <p id="card-text" class="card-text"></p>
+
+          <div id="card-art-wrap" class="card-art-wrap hidden">
+            <img id="card-image" class="card-image" alt="Situation artwork" />
+          </div>
+
+          <div id="card-who" class="card-who"></div>
           <div class="card-hint">Swipe or use &larr; / &rarr;</div>
         </div>
 
-        <div id="result-box" class="result-box hidden">
+        <div id="result-box" class="result-box hidden" title="Click to continue">
           <p id="result-text"></p>
+          <span class="result-skip">Click or press Space to continue</span>
         </div>
       </main>
 
