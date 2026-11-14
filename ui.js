@@ -139,14 +139,11 @@ if (sceneBg) {
      toggleMute: function () { muted = !muted; return muted; },
      isMuted: function () { return muted; }
     };
+  })();
+  // True if any meter is close to 0 or 100
+  function isAnyMeterDanger(s) {
+    return METER_KEYS.some(function (k) { return s[k] <= 15 || s[k] >= 85; });
   }
-  var res = Game.choose(side);{
-Sound.play("swipe");
-if (res.gameOver) Sound.play(res.endingKey === "victory" ? "win" : "lose");
-else if (isAnyMeterDanger(Game.getState())) Sound.play("warning"); // e.g. meter <= 15 or >= 85
-saveBestIfHigher();
-  }
-})();
 
       
 
@@ -181,6 +178,8 @@ saveBestIfHigher();
   const endText = document.getElementById("end-text");
   const endWeeks = document.getElementById("end-weeks");
   const restartBtn = document.getElementById("restart-btn");
+  const continueBtn = document.getElementById("continue-btn");
+  const endBest = document.getElementById("end-best");
 
   const meterEls = {};
   METER_KEYS.forEach((key) => {
@@ -371,8 +370,25 @@ saveBestIfHigher();
 
   function showEndScreen(endingKey) {
     const ending = ENDINGS[endingKey] || { title: "Mission Over", text: "" };
-    const state = Game.getState();
-    const survived = endingKey === "victory" ? 100 : Math.min(state.week, 100);
+    // Completed weeks (same rule as the best score)
+    const survived = Math.max(Game.getState().week - 1, 0);
+
+    endTitle.textContent = ending.title;
+    endText.textContent = ending.text;
+    endWeeks.textContent = `Weeks survived: ${survived}`;
+    endBest.textContent = `Best: ${loadBest()} weeks`;
+    // Continue is offered only after victory
+    continueBtn.classList.toggle("hidden", endingKey !== "victory");
+    showScreen(endScreen);
+    isLocked = false;
+  }
+
+  // Keep playing after week 100 (no Game.start, state is kept)
+  function continueGame() {
+    showScreen(gameScreen);
+    renderState();
+    loadNextCard();
+  }
 
     endTitle.textContent = ending.title;
     endText.textContent = ending.text;
@@ -416,6 +432,11 @@ saveBestIfHigher();
 
     const outcome = Game.choose(side);
     renderState();
+    // Sounds and best score
+    Sound.play("swipe");
+    if (outcome.gameOver) Sound.play(outcome.endingKey === "victory" ? "win" : "lose");
+    else if (isAnyMeterDanger(Game.getState())) Sound.play("warning");
+    saveBestIfHigher();
 
     const message = chosenData && chosenData.result ? chosenData.result.trim() : "";
 
@@ -541,6 +562,7 @@ saveBestIfHigher();
 
     startBtn.addEventListener("click", startNewGame);
     restartBtn.addEventListener("click", startNewGame);
+    continueBtn.addEventListener("click", continueGame);
     resultBox.addEventListener("click", finishResultStep);
 
     cardEl.addEventListener("pointerdown", onPointerDown);
