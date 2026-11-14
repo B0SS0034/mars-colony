@@ -28,28 +28,19 @@ body {
   user-select: none;
 }
 
-/* Полностью убираем любые черные подложки под картинкой */
+/* Фоны локаций — чистые картинки без цветных наложений */
 .scene-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-color: #0c090a;
+  background-color: #140e0e;
   background-size: cover;
   background-position: center;
-  transition: background-image 0.4s ease;
-  filter: brightness(2.2) contrast(1.2); /* Выкручиваем яркость и контраст, чтобы картинка горела */
+  transition: background-image 0.5s ease;
+  filter: brightness(1.25) contrast(1.05);
 }
 
-/* УДАЛЯЕМ затеняющий слой полностью (ставим прозрачность 0), чтобы он не крал свет */
-.scene-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.0); 
-}
-
-/* Пути к картинкам */
 .scene-bg[data-bg="greenhouse"] {
   background-image: url("images/bg-greenhouse.jpg");
 }
