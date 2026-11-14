@@ -18,6 +18,35 @@
 
   // DOM references
   const sceneBg = document.getElementById("scene-bg");
+  const BG_SOURCES = {
+    greenhouse: "images/bg-greenhouse.jpg",
+    engineering: "images/bg-engineering.jpg",
+    medbay: "images/bg-medbay.jpg",
+    habitat: "images/bg-habitat.jpg",
+    surface: "images/bg-surface.jpg",
+    command: "images/bg-command.jpg"
+  };
+
+  let bgLayerA = document.getElementById("bg-layer-a");
+  if (!bgLayerA && sceneBg) {
+    bgLayerA = document.createElement("img");
+    bgLayerA.id = "bg-layer-a";
+    bgLayerA.className = "bg-layer";
+    bgLayerA.alt = "";
+    sceneBg.appendChild(bgLayerA);
+  }
+
+  let currentBgKey = "";
+
+  function preloadBackgrounds() {
+    Object.values(BG_SOURCES).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      if (img.decode) {
+        img.decode().catch(() => {});
+      }
+    });
+  }
   const startScreen = document.getElementById("start-screen");
   const gameScreen = document.getElementById("game-screen");
   const endScreen = document.getElementById("end-screen");
