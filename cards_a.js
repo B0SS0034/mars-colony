@@ -170,10 +170,10 @@ const CARDS_A = [
     who: "Elena Voss, Chief Engineer",
     text: "Captain, clear skies give us peak solar output this week. Route surplus power to grow lamps or battery banks?",
     left: {
-        label: "Boost grow lamps",
-        effects: { food: 15, oxygen: 10, energy: -10 },
-        result: "Crops explode with growth and pump out oxygen, but the lamps eat the surplus."
-},
+      label: "Boost grow lamps",
+      effects: { food: 15, oxygen: 10, energy: -10 },
+      result: "Crops explode with growth and pump out oxygen, but the lamps eat the surplus."
+    },
     right: {
       label: "Charge batteries",
       effects: { energy: 20 },
@@ -220,9 +220,9 @@ const CARDS_A = [
       result: "The blast clears the shaft fast, though dust and fumes foul the air."
     },
     right: {
-        label: "Dig by hand",
-        effects: { food: -10, energy: -10, morale: 5 },
-        result: "Crews burn double rations hauling rock, but shared effort lifts spirits."
+      label: "Dig by hand",
+      effects: { food: -10, energy: -10, morale: 5 },
+      result: "Crews burn double rations hauling rock, but shared effort lifts spirits."
     }
   },
   {
@@ -250,9 +250,9 @@ const CARDS_A = [
       result: "Cozy quarters thrill the crew, though dry air irritates throats."
     },
     right: {
-        label: "Run radiators",
-        effects: { energy: 5, oxygen: 5, morale: -10 },
-        result: "Life support runs smoothly, but the cold habs leave everyone shivering."
+      label: "Run radiators",
+      effects: { energy: 5, oxygen: 5, morale: -10 },
+      result: "Life support runs smoothly, but the cold habs leave everyone shivering."
     }
   },
   {
@@ -299,8 +299,7 @@ const CARDS_A = [
       effects: { energy: -15, oxygen: 10, morale: 5 },
       result: "Dim lights and cold showers keep everyone safe while scrubbers run clean."
     }
-  }
-  ,
+  },
   {
     id: "a_21",
     who: "Elena Voss, Chief Engineer",
@@ -321,9 +320,9 @@ const CARDS_A = [
     who: "Mei Tanaka, Botanist",
     text: "Captain, crickets in the protein farm are chirping loudly through the vents. Cull half the swarm or double feed?",
     left: {
-        label: "Cull the swarm",
-        effects: { food: 15, energy: -10 },
-        result: "Roasted cricket flour fills twenty crates, but the cull takes hours of labor."
+      label: "Cull the swarm",
+      effects: { food: 15, energy: -10 },
+      result: "Roasted cricket flour fills twenty crates, but the cull takes hours of labor."
     },
     right: {
       label: "Double their feed",
@@ -476,9 +475,9 @@ const CARDS_A = [
       result: "Extra capacity stabilizes the base, though acid fumes sting the eyes."
     },
     right: {
-        label: "Strip for heaters",
-        effects: { energy: 5, morale: 15, oxygen: -5 },
-        result: "Warm bunkrooms end the complaints, but glowing coils dry out the air."
+      label: "Strip for heaters",
+      effects: { energy: 5, morale: 15, oxygen: -5 },
+      result: "Warm bunkrooms end the complaints, but glowing coils dry out the air."
     }
   },
   {
@@ -681,9 +680,9 @@ const CARDS_A = [
     who: "Mei Tanaka, Botanist",
     text: "Captain, aphids infested the tomato vines. Release predatory ladybugs or fumigate the bay with sulfur?",
     left: {
-        label: "Release ladybugs",
-        effects: { food: 15, morale: 10, energy: -10 },
-        result: "Beetles wipe out the pests, though the humid bay needs extra heating."
+      label: "Release ladybugs",
+      effects: { food: 15, morale: 10, energy: -10 },
+      result: "Beetles wipe out the pests, though the humid bay needs extra heating."
     },
     right: {
       label: "Fumigate with sulfur",
@@ -731,9 +730,9 @@ const CARDS_A = [
       result: "Fresh melon slices bring tears of joy to dust-weary faces."
     },
     right: {
-        label: "Concentrate juice",
-        effects: { food: 15, morale: -10 },
-        result: "Bottled syrup adds weeks of calories, but the crew gets only a sip."
+      label: "Concentrate juice",
+      effects: { food: 15, morale: -10 },
+      result: "Bottled syrup adds weeks of calories, but the crew gets only a sip."
     }
   },
   {
