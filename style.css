@@ -28,28 +28,28 @@ body {
   user-select: none;
 }
 
-/* Параметры освещения фона: увеличиваем яркость */
+/* Полностью убираем любые черные подложки под картинкой */
 .scene-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-color: var(--bg);
+  background-color: #0c090a;
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease;
-  filter: brightness(1.3); /* Делает картинку ярче и светлее (можете поднять до 1.5, если хочется еще светлее) */
+  transition: background-image 0.4s ease;
+  filter: brightness(2.2) contrast(1.2); /* Выкручиваем яркость и контраст, чтобы картинка горела */
 }
 
-/* Снижаем затемнение слоя, чтобы картинка не уходила в темноту */
+/* УДАЛЯЕМ затеняющий слой полностью (ставим прозрачность 0), чтобы он не крал свет */
 .scene-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(12, 9, 10, 0.15); /* Очень легкое затенение, чтобы карточка оставалась читаемой, но фон горел ярко */
+  background: rgba(0, 0, 0, 0.0); 
 }
 
-/* Чистые картинки без наложения сторонних цветовых фильтров */
+/* Пути к картинкам */
 .scene-bg[data-bg="greenhouse"] {
   background-image: url("images/bg-greenhouse.jpg");
 }
