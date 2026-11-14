@@ -512,14 +512,6 @@ h1 {
   display: none;
 }
 
-.result-skip {
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  opacity: 0.75;
-}
-
 /* Bottom Choice Labels */
 .choices-bar {
   display: flex;
