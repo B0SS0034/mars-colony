@@ -60,6 +60,8 @@
   const cardBadge = document.getElementById("card-badge");
   const cardBadgeText = document.getElementById("card-badge-text");
   const cardWho = document.getElementById("card-who");
+  const cardRole = document.getElementById("card-role");
+  const skipResultsEl = document.getElementById("skip-results"); // checkbox on start screen
   const cardText = document.getElementById("card-text");
   const cardArtWrap = document.getElementById("card-art-wrap");
   const cardImage = document.getElementById("card-image");
@@ -231,7 +233,10 @@
     updateSceneBackground(currentCard);
     updateCardArtwork(currentCard);
 
-    cardWho.textContent = currentCard.who;
+    // "Mei Tanaka, Botanist" -> name + role on separate lines
+    const whoParts = currentCard.who.split(",");
+    cardWho.textContent = whoParts[0].trim();
+    cardRole.textContent = whoParts.slice(1).join(",").trim();
     cardText.textContent = currentCard.text;
     choiceLeftEl.textContent = currentCard.left.label;
     choiceRightEl.textContent = currentCard.right.label;
@@ -301,7 +306,7 @@
     const message = chosenData && chosenData.result ? chosenData.result.trim() : "";
 
     setTimeout(() => {
-      if (message) {
+      if (message && !skipResultsEl.checked) {
         pendingOutcome = outcome;
         resultText.textContent = message;
         resultBox.classList.remove("hidden");
