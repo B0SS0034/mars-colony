@@ -92,9 +92,37 @@
     return "engineering";
   }
 
+  let bgSwitchTimer = null;
+
   function updateSceneBackground(card) {
-    if (!sceneBg) return;
-    sceneBg.setAttribute("data-bg", resolveCardBg(card));
+    const key = resolveCardBg(card);
+    if (key === currentBgKey) return;
+
+    const src = BG_SOURCES[key] || BG_SOURCES.command;
+    const isFirstLoad = currentBgKey === "";
+    currentBgKey = key;
+
+    if (bgSwitchTimer) {
+      clearTimeout(bgSwitchTimer);
+      bgSwitchTimer = null;
+    }
+
+    // При самом первом открытии игры показываем фон сразу без мерцания
+    if (isFirstLoad) {
+      bgLayerA.src = src;
+      bgLayerA.classList.add("active");
+      return;
+    }
+
+    // 1. Плавно гасим текущий фон (0.15 с)
+    bgLayerA.classList.remove("active");
+
+    // 2. Через 0.15 с подставляем новый и плавно проявляем его (ещё 0.15 с)
+    bgSwitchTimer = setTimeout(() => {
+      bgLayerA.src = src;
+      bgLayerA.classList.add("active");
+      bgSwitchTimer = null;
+    }, 150);
   }
 
   // Загрузка иллюстрации карточки с фолбэком на портрет персонажа
@@ -166,7 +194,7 @@
     updateEffectDots(null);
   }
 
-  function loadNextCard() {
+ function loadNextCard() {
     currentCard = Game.nextCard();
     if (!currentCard) return;
 
@@ -178,7 +206,18 @@
     cardText.textContent = currentCard.text;
     choiceLeftEl.textContent = currentCard.left.label;
     choiceRightEl.textContent = currentCard.right.label;
+
+    // Сбрасываем индикаторы и ставим карточку в стартовую позицию для плавного появления
     resetCardVisuals(false);
+    cardEl.style.opacity = "0";
+    cardEl.style.transform = "translateY(14px) scale(0.96)";
+
+    // Запускаем плавную анимацию проявления
+    void cardEl.offsetWidth;
+    cardEl.style.transition = "transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease";
+    cardEl.style.opacity = "1";
+    cardEl.style.transform = "translateX(0px) rotate(0deg) scale(1)";
+
     isLocked = false;
   }
 
