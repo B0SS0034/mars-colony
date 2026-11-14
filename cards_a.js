@@ -850,6 +850,434 @@ const CARDS_A = [
       effects: { energy: -5, morale: 20 },
       result: "A rare day off restores hope across all 150 colonists."
     }
+  },
+
+  // ===== RARE Mission Control cards (a_51 - a_75): story clues + big-stakes events =====
+  // Paste before the closing "];" of CARDS_A (add a comma after the last old card).
+  {
+    id: "a_51",
+    bg: "command",
+    image: "images/cards/a_51.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, the Odyssey never launched: its engines failed on the pad. We warned your old Captain weeks ago. Tell the colony?",
+    left: {
+      label: "Tell everyone",
+      effects: { morale: -20, energy: 15 },
+      result: "Grief turns to grim resolve, and every hand reaches for a tool."
+    },
+    right: {
+      label: "Keep hoping",
+      effects: { morale: 20, food: -15 },
+      result: "Hope runs high, and so do appetites at the mess hall."
+    }
+  },
+  {
+    id: "a_52",
+    bg: "command",
+    image: "images/cards/a_52.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, our backups show Hale hid the grounding notice for three weeks. Read his private log?",
+    left: {
+      label: "Read the log",
+      effects: { morale: -20, food: 20 },
+      result: "He wrote of a hidden ration stash and a plan he told no one."
+    },
+    right: {
+      label: "Seal the file",
+      effects: { morale: 15, food: -10 },
+      result: "You keep the peace, but the stash stays lost."
+    }
+  },
+  {
+    id: "a_53",
+    bg: "surface",
+    image: "images/cards/a_53.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, orbiters show Hale's rover parked on the north ridge with its doors open. Retrieve it?",
+    left: {
+      label: "Retrieve it",
+      effects: { energy: 20, morale: -20 },
+      result: "The battery is half full, and fresh boot prints lead away from it."
+    },
+    right: {
+      label: "Leave it",
+      effects: { energy: -15, morale: 10 },
+      result: "The rover stays in the dust, and the grid pays for it."
+    }
+  },
+  {
+    id: "a_54",
+    bg: "surface",
+    image: "images/cards/a_54.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, orbiter photos show boot prints leaving the rover toward the old Cache Zero. Send a search party?",
+    left: {
+      label: "Send party",
+      effects: { oxygen: -20, morale: 20 },
+      result: "Suited colonists vanish into the dust, and the colony holds its breath."
+    },
+    right: {
+      label: "Stay put",
+      effects: { oxygen: 10, morale: -20 },
+      result: "Nobody follows the prints, and shame spreads like frost."
+    }
+  },
+  {
+    id: "a_55",
+    bg: "command",
+    image: "images/cards/a_55.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, a faint beacon repeats from the north in Hale's own code. Spend power to boost the antenna?",
+    left: {
+      label: "Boost antenna",
+      effects: { energy: -25, morale: 20 },
+      result: "The ping repeats, steady as a heartbeat, and the colony starts to believe."
+    },
+    right: {
+      label: "Keep listening",
+      effects: { energy: 10, morale: -20 },
+      result: "The signal fades in and out, and doubt creeps back in."
+    }
+  },
+  {
+    id: "a_56",
+    bg: "command",
+    image: "images/cards/a_56.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, we decoded a clipped message from Hale: \"window... Odyssey... hold on.\" Share it with the colony?",
+    left: {
+      label: "Share it",
+      effects: { morale: 25, food: -15 },
+      result: "Cheers shake the mess hall, and someone opens the last jar of jam."
+    },
+    right: {
+      label: "Keep it secret",
+      effects: { morale: -15, energy: 15 },
+      result: "Work goes on while rumors fill the silence."
+    }
+  },
+  {
+    id: "a_57",
+    bg: "surface",
+    image: "images/cards/a_57.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, old orbital images show a buried first-expedition container near Cache Zero. Dig it up?",
+    left: {
+      label: "Dig it up",
+      effects: { food: 25, energy: -20 },
+      result: "Freeze-dried meals from the first crew are tough but edible."
+    },
+    right: {
+      label: "Too deep",
+      effects: { energy: 15, morale: -15 },
+      result: "The crate stays under the sand, and so does the answer."
+    }
+  },
+  {
+    id: "a_58",
+    bg: "command",
+    image: "images/cards/a_58.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, Odyssey II is fueled for the next window but needs a landing beacon on the ground. Build one?",
+    left: {
+      label: "Build one",
+      effects: { energy: -25, morale: 20 },
+      result: "A beacon rises on the plain, and Earth marks the landing zone."
+    },
+    right: {
+      label: "Delay it",
+      effects: { energy: 15, morale: -20 },
+      result: "Power stays high, but the colony counts every missing day."
+    }
+  },
+  {
+    id: "a_59",
+    bg: "command",
+    image: "images/cards/a_59.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, an Earth inquiry wants Hale declared a deserter so his supplies can be reassigned. Sign it?",
+    left: {
+      label: "Sign it",
+      effects: { food: 20, morale: -25 },
+      result: "Rations are reallocated, and many colonists avoid your eyes."
+    },
+    right: {
+      label: "Refuse",
+      effects: { morale: 20, food: -20 },
+      result: "The colony cheers your loyalty, and the inquiry cuts our allocation."
+    }
+  },
+  {
+    id: "a_60",
+    bg: "engineering",
+    image: "images/cards/a_60.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, our audit shows a long-range transmitter vanished from stores the day Hale left. Question the crew?",
+    left: {
+      label: "Question crew",
+      effects: { morale: -20, energy: 15 },
+      result: "Elena admits she helped him load it, swearing he meant to call for help."
+    },
+    right: {
+      label: "Let it go",
+      effects: { morale: 15, energy: -15 },
+      result: "Trust holds, but the missing transmitter nags at the engineers."
+    }
+  },
+  {
+    id: "a_61",
+    bg: "command",
+    image: "images/cards/a_61.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, the colony's time capsule holds a sealed note in Hale's handwriting. Open it now?",
+    left: {
+      label: "Open it",
+      effects: { morale: 25, food: -10 },
+      result: "It reads: \"Hold on until the window. I will light the way.\""
+    },
+    right: {
+      label: "Keep sealed",
+      effects: { morale: -15, energy: 10 },
+      result: "The note waits on the shelf, and the crew cannot stop wondering."
+    }
+  },
+  {
+    id: "a_62",
+    bg: "surface",
+    image: "images/cards/a_62.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, thermal imaging shows a warm spot at Cache Zero. Something there is powered. Launch a rescue?",
+    left: {
+      label: "Launch rescue",
+      effects: { energy: -25, oxygen: -15, morale: 25 },
+      result: "The rover convoy rolls north, and nobody sleeps."
+    },
+    right: {
+      label: "Wait for dawn",
+      effects: { energy: 10, morale: -20 },
+      result: "Dawn comes slowly, and the warm spot looks colder on the screens."
+    }
+  },
+  {
+    id: "a_63",
+    bg: "command",
+    image: "images/cards/a_63.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, someone leaked Hale's hidden log to the whole colony. Earth advises you to address it. Give a speech?",
+    left: {
+      label: "Give speech",
+      effects: { morale: 20, energy: -15 },
+      result: "Your honesty steadies the crowd, and dozens volunteer to help search."
+    },
+    right: {
+      label: "Stay silent",
+      effects: { morale: -20, energy: 10 },
+      result: "Silence breeds whispers in every corridor."
+    }
+  },
+  {
+    id: "a_64",
+    bg: "command",
+    image: "images/cards/a_64.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, Mars passes behind the Sun this month. Radio will go dark for two weeks. Send full instructions now?",
+    left: {
+      label: "Full briefing",
+      effects: { energy: -20, morale: 20 },
+      result: "Solar conjunction blocks radio for about two weeks, but the crew feels prepared."
+    },
+    right: {
+      label: "Radio silence",
+      effects: { energy: 15, morale: -20 },
+      result: "The dish rests, and the long silence from Earth weighs on everyone."
+    }
+  },
+  {
+    id: "a_65",
+    bg: "surface",
+    image: "images/cards/a_65.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, a global dust storm is forming and solar output may fall for weeks. Pre-charge the batteries now?",
+    left: {
+      label: "Run generators",
+      effects: { energy: 25, oxygen: -20 },
+      result: "Reserves fill up, though the generators burn precious air."
+    },
+    right: {
+      label: "Cut power use",
+      effects: { energy: 15, morale: -20 },
+      result: "Dimmed corridors and cold bunks make everyone grumpy."
+    }
+  },
+  {
+    id: "a_66",
+    bg: "surface",
+    image: "images/cards/a_66.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, orbiters spotted water ice under a crater four kilometers away. Launch a drilling expedition?",
+    left: {
+      label: "Launch expedition",
+      effects: { oxygen: 25, energy: -20, morale: -10 },
+      result: "Ice lies close to the surface at mid latitudes, and electrolysis units hum."
+    },
+    right: {
+      label: "Too risky",
+      effects: { morale: 10, oxygen: -20 },
+      result: "The crew stays safe, but the cisterns keep dropping."
+    }
+  },
+  {
+    id: "a_67",
+    bg: "engineering",
+    image: "images/cards/a_67.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, your oxygen unit matches the MOXIE design, which makes oxygen from CO2. Run it at full power?",
+    left: {
+      label: "Full power",
+      effects: { oxygen: 25, energy: -25 },
+      result: "MOXIE proved that Martian carbon dioxide can become breathable oxygen."
+    },
+    right: {
+      label: "Half power",
+      effects: { oxygen: 15, energy: -10 },
+      result: "A slower run keeps the grid happy and the air steadily fresher."
+    }
+  },
+  {
+    id: "a_68",
+    bg: "surface",
+    image: "images/cards/a_68.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, tracking shows a meteoroid swarm over your site tonight. Move everyone into the deep tunnels?",
+    left: {
+      label: "Move crew",
+      effects: { oxygen: -20, morale: 10, energy: -10 },
+      result: "Cramped tunnels feel stuffy, but the thin air offers little shield outside."
+    },
+    right: {
+      label: "Stay put",
+      effects: { energy: -25, oxygen: 10 },
+      result: "A few rocks puncture a solar panel, but the habitat stays calm."
+    }
+  },
+  {
+    id: "a_69",
+    bg: "engineering",
+    image: "images/cards/a_69.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, seismic sensors report a swarm of marsquakes near the habitat. Brace the tunnel roofs now?",
+    left: {
+      label: "Brace tunnels",
+      effects: { energy: -20, morale: 15 },
+      result: "Fresh supports hold firm as the ground shivers."
+    },
+    right: {
+      label: "Monitor only",
+      effects: { energy: 10, oxygen: -25 },
+      result: "A hairline crack leaks air before the repair crew spots it."
+    }
+  },
+  {
+    id: "a_70",
+    bg: "surface",
+    image: "images/cards/a_70.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, a bright comet passes tonight. Earth asks you to cut all lights so astronomers can see it clearly.",
+    left: {
+      label: "Lights off",
+      effects: { energy: 20, morale: 15, food: -20 },
+      result: "Colonists gather at the windows, but the dark plants stall."
+    },
+    right: {
+      label: "Keep lights on",
+      effects: { energy: -10, food: 10 },
+      result: "Astronomers grumble, and the comet slips by unnoticed."
+    }
+  },
+  {
+    id: "a_71",
+    bg: "greenhouse",
+    image: "images/cards/a_71.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, we uploaded an improved crop schedule. Switch every bed to it right now, or test one first?",
+    left: {
+      label: "Switch all beds",
+      effects: { food: 25, oxygen: -15 },
+      result: "New light cycles boost the harvest, but the plants drink more air at night."
+    },
+    right: {
+      label: "Test one bed",
+      effects: { food: 10, morale: 5 },
+      result: "A careful trial shows promise and avoids a costly mistake."
+    }
+  },
+  {
+    id: "a_72",
+    bg: "greenhouse",
+    image: "images/cards/a_72.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, our lab says crop soil has perchlorates above safe limits. Wash every bed with precious water?",
+    left: {
+      label: "Wash the soil",
+      effects: { food: 15, energy: -20 },
+      result: "Martian soil carries toxic perchlorates, and washing makes it safer for roots."
+    },
+    right: {
+      label: "Risk it",
+      effects: { food: 20, morale: -20 },
+      result: "Harvests keep coming, but a stomach bug sweeps through the colony."
+    }
+  },
+  {
+    id: "a_73",
+    bg: "engineering",
+    image: "images/cards/a_73.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, our engineers found a design flaw in your oxygen scrubbers. Pull the units for a patch right now?",
+    left: {
+      label: "Patch now",
+      effects: { oxygen: 20, energy: -20 },
+      result: "The patched scrubbers run cleaner, but the rebuild drains the batteries."
+    },
+    right: {
+      label: "Patch later",
+      effects: { oxygen: -20, energy: 15 },
+      result: "Power stays high while the flawed units wheeze through another shift."
+    }
+  },
+  {
+    id: "a_74",
+    bg: "medbay",
+    image: "images/cards/a_74.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, flight surgeons warn of bone loss from low gravity. Make daily exercise drills mandatory?",
+    left: {
+      label: "Mandatory drills",
+      effects: { morale: -20, food: -10, oxygen: -10 },
+      result: "Mars has only about 38% of Earth's gravity, so bones need daily work."
+    },
+    right: {
+      label: "Keep optional",
+      effects: { morale: 15, energy: -15 },
+      result: "Spirits stay high while a few colonists quietly weaken."
+    }
+  },
+  {
+    id: "a_75",
+    bg: "command",
+    image: "images/cards/a_75.jpg",
+    who: "Mission Control (Earth)",
+    text: "Captain, Earth requests a live video call with every colonist. It will drain the dish power. Approve it?",
+    left: {
+      label: "Hold the call",
+      effects: { morale: 25, energy: -20 },
+      result: "Each reply takes up to 22 minutes to cross space, yet families talk for hours."
+    },
+    right: {
+      label: "Send a report",
+      effects: { morale: -10, energy: 10 },
+      result: "A tidy written report goes out, and the dish keeps its charge."
+    }
   }
 ];
 
