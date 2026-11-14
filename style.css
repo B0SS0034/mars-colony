@@ -669,3 +669,22 @@ h1 {
 .card.has-face .card-badge.swipe-right .card-badge-text {
   transform: none;
 }
+
+/* Штамп в верхнем углу, противоположном выбору */
+.card.has-face .card-badge {
+  top: 3%;
+}
+
+/* Свайп влево: штамп в правом верхнем углу, сильнее наклонён вправо */
+.card.has-face .card-badge.swipe-left {
+  left: auto;
+  right: 4%;
+  transform: rotate(16deg);
+}
+
+/* Свайп вправо: штамп в левом верхнем углу, сильнее наклонён влево */
+.card.has-face .card-badge.swipe-right {
+  right: auto;
+  left: 4%;
+  transform: rotate(-16deg);
+}
