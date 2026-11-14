@@ -44,13 +44,40 @@ if (sceneBg) {
   let currentBgKey = "";
 
   function preloadBackgrounds() {
-    Object.values(BG_SOURCES).forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      if (img.decode) {
-        img.decode().catch(() => {});
-      }
-    });
+    const cardFace = document.getElementById("card-face");
+    const okFaces = new Set();
+
+    // Заранее грузим картинки карточек, чтобы они появлялись мгновенно
+    function preloadCardFaces() {
+     const all = []
+       .concat(typeof CARDS_A !== "undefined" ? CARDS_A : [])
+       .concat(typeof CARDS_B !== "undefined" ? CARDS_B : []);
+     all.forEach((c) => {
+       if (!c.image) return;
+        const img = new Image();
+        img.onload = () => okFaces.add(c.image);
+        img.src = c.image;
+     });
+    }
+
+    function setFace(on, src) {
+     if (on) cardFace.src = src;
+     cardEl.classList.toggle("has-face", on);
+     cardEl.parentElement.classList.toggle("has-face", on);
+    }
+
+    function updateCardFace(card) {
+      const src = card && card.image;
+     if (!src) return setFace(false);
+     if (okFaces.has(src)) return setFace(true, src);
+     setFace(false);
+     const probe = new Image();
+      probe.onload = () => {
+        okFaces.add(src);
+        if (currentCard === card) setFace(true, src);
+     };
+      probe.src = src;
+    }
   }
   const startScreen = document.getElementById("start-screen");
   const gameScreen = document.getElementById("game-screen");
@@ -243,6 +270,7 @@ if (sceneBg) {
 
     resultBox.classList.add("hidden");
     updateSceneBackground(currentCard);
+    updateCardFace(currentCard); 
     updateCardArtwork(currentCard);
 
     // "Mei Tanaka, Botanist" -> name + role on separate lines
@@ -449,6 +477,7 @@ if (sceneBg) {
 
     showScreen(startScreen);
     preloadBackgrounds();
+    preloadCardFaces();
   }
 
   init();
