@@ -143,6 +143,12 @@ if (sceneBg) {
   // True if any meter is close to 0 or 100
   function isAnyMeterDanger(s) {
     return METER_KEYS.some(function (k) { return s[k] <= 15 || s[k] >= 85; });
+  
+    // Show the saved best result on the start screen (hidden if no game played yet)
+  function renderStartBest() {
+    const best = loadBest();
+    startBest.textContent = best > 0 ? `Best result: ${best} weeks` : "";
+  }
   }
 
       
@@ -151,6 +157,7 @@ if (sceneBg) {
   
   
   const startScreen = document.getElementById("start-screen");
+  const startBest = document.getElementById("start-best");
   const gameScreen = document.getElementById("game-screen");
   const endScreen = document.getElementById("end-screen");
 
@@ -179,6 +186,7 @@ if (sceneBg) {
   const endWeeks = document.getElementById("end-weeks");
   const restartBtn = document.getElementById("restart-btn");
   const continueBtn = document.getElementById("continue-btn");
+  const muteBtn = document.getElementById("mute-btn");
   const endBest = document.getElementById("end-best");
 
   const meterEls = {};
@@ -388,14 +396,7 @@ if (sceneBg) {
     showScreen(gameScreen);
     renderState();
     loadNextCard();
-  }
-
-    endTitle.textContent = ending.title;
-    endText.textContent = ending.text;
-    endWeeks.textContent = `Weeks survived: ${survived}`;
-    showScreen(endScreen);
-    isLocked = false;
-  }
+  
 
   function finishResultStep() {
     if (!pendingOutcome) return;
@@ -559,6 +560,12 @@ if (sceneBg) {
   function init() {
     introTitle.textContent = INTRO.title;
     introText.textContent = INTRO.text;
+      
+    // Mute toggle; the button keeps focus off so Space/Enter do not re-trigger it
+    muteBtn.addEventListener("click", function () {
+      muteBtn.textContent = Sound.toggleMute() ? "Sound: off" : "Sound: on";
+      muteBtn.blur();
+    });
 
     startBtn.addEventListener("click", startNewGame);
     restartBtn.addEventListener("click", startNewGame);
@@ -571,6 +578,7 @@ if (sceneBg) {
     window.addEventListener("pointercancel", onPointerUp);
     window.addEventListener("keydown", onKeyDown);
 
+    renderStartBest();
     showScreen(startScreen);
     preloadBackgrounds();
     preloadCardFaces();
