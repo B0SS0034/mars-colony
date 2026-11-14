@@ -2,10 +2,22 @@
   "use strict";
 
   const SWIPE_THRESHOLD = 80;
-  const RESULT_DELAY_MS = 1100;
+  const MAX_DRAG_X = 135; // Ограничение ухода карты влево и вправо
+  const RESULT_DELAY_MS = 2600; // Достаточное время для чтения последствий
   const METER_KEYS = ["oxygen", "food", "energy", "morale"];
 
+  // Фолбэк-портреты персонажей (если для конкретной карты нет отдельной картинки)
+  const CHARACTER_PORTRAITS = {
+    "Mei Tanaka": "images/chars/botanist.png",
+    "Elena Voss": "images/chars/engineer.png",
+    "Dr. Amara Okafor": "images/chars/doctor.png",
+    "Tomasz Kowalski": "images/chars/cook.png",
+    "Nadia Vance": "images/chars/miner.png",
+    "Mission Control": "images/chars/command.png"
+  };
+
   // DOM references
+  const sceneBg = document.getElementById("scene-bg");
   const startScreen = document.getElementById("start-screen");
   const gameScreen = document.getElementById("game-screen");
   const endScreen = document.getElementById("end-screen");
@@ -17,8 +29,11 @@
   const weekCounter = document.getElementById("week-counter");
   const cardEl = document.getElementById("card");
   const cardBadge = document.getElementById("card-badge");
+  const cardBadgeText = document.getElementById("card-badge-text");
   const cardWho = document.getElementById("card-who");
   const cardText = document.getElementById("card-text");
+  const cardArtWrap = document.getElementById("card-art-wrap");
+  const cardImage = document.getElementById("card-image");
   const choiceLeftEl = document.getElementById("choice-left");
   const choiceRightEl = document.getElementById("choice-right");
 
@@ -44,11 +59,72 @@
   let isDragging = false;
   let isLocked = false;
   let startX = 0;
-  let currentX = 0;
+  let clampedDeltaX = 0;
+  let resultTimer = null;
+  let pendingOutcome = null;
 
   function showScreen(screen) {
     [startScreen, gameScreen, endScreen].forEach((s) => s.classList.remove("active"));
     screen.classList.add("active");
+  }
+
+  // Определение локации фона для карты (поддерживает и cards_a.js, и cards_b.js)
+  function resolveCardBg(card) {
+    if (card && card.bg) return card.bg;
+    const who = (card && card.who ? card.who : "").toLowerCase();
+    const text = (card && card.text ? card.text : "").toLowerCase();
+
+    if (who.includes("botanist") || /algae|crop|greenhouse|wheat|potato|plant|bamboo|melon/.test(text)) {
+      return "greenhouse";
+    }
+    if (who.includes("doctor") || /medical|oxygen|insomnia|bronchitis|vitamin|quarantine/.test(text)) {
+      return "medbay";
+    }
+    if (who.includes("cook") || /stew|ration|cheese|bread|porridge|meat|freezer|pantry/.test(text)) {
+      return "habitat";
+    }
+    if (who.includes("miner") || /dust storm|tunnel|drill|rover|ore|vent|lava|outside/.test(text)) {
+      return "surface";
+    }
+    if (who.includes("mission control") || /earth|flare|telemetry|firmware|radar|orbital/.test(text)) {
+      return "command";
+    }
+    return "engineering";
+  }
+
+  function updateSceneBackground(card) {
+    if (!sceneBg) return;
+    sceneBg.setAttribute("data-bg", resolveCardBg(card));
+  }
+
+  // Загрузка иллюстрации карточки с фолбэком на портрет персонажа
+  function updateCardArtwork(card) {
+    if (!cardArtWrap || !cardImage) return;
+
+    const who = card && card.who ? card.who : "";
+    const charKey = Object.keys(CHARACTER_PORTRAITS).find((name) => who.includes(name));
+    const fallbackSrc = charKey ? CHARACTER_PORTRAITS[charKey] : "";
+    const primarySrc = (card && card.image) || fallbackSrc;
+
+    if (!primarySrc) {
+      cardArtWrap.classList.add("hidden");
+      cardImage.removeAttribute("src");
+      return;
+    }
+
+    let triedFallback = primarySrc === fallbackSrc;
+    cardImage.onerror = function () {
+      if (!triedFallback && fallbackSrc) {
+        triedFallback = true;
+        cardImage.src = fallbackSrc;
+      } else {
+        cardArtWrap.classList.add("hidden");
+      }
+    };
+    cardImage.onload = function () {
+      cardArtWrap.classList.remove("hidden");
+    };
+    cardImage.src = primarySrc;
   }
 
   // Render meter bars and week counter from Game.getState()
@@ -79,9 +155,12 @@
 
   // Reset card position and preview indicators
   function resetCardVisuals(animate) {
-    cardEl.style.transition = animate ? "transform 0.25s ease" : "none";
-    cardEl.style.transform = "translateX(0px) rotate(0deg)";
+    cardEl.style.transition = animate ? "transform 0.25s ease, opacity 0.2s ease" : "none";
+    cardEl.style.transform = "translateX(0px) rotate(0deg) scale(1)";
+    cardEl.style.opacity = "1";
+    cardEl.style.pointerEvents = "auto";
     cardBadge.style.opacity = "0";
+    cardBadge.classList.remove("swipe-left", "swipe-right");
     choiceLeftEl.classList.remove("active");
     choiceRightEl.classList.remove("active");
     updateEffectDots(null);
@@ -92,6 +171,9 @@
     if (!currentCard) return;
 
     resultBox.classList.add("hidden");
+    updateSceneBackground(currentCard);
+    updateCardArtwork(currentCard);
+
     cardWho.textContent = currentCard.who;
     cardText.textContent = currentCard.text;
     choiceLeftEl.textContent = currentCard.left.label;
@@ -112,6 +194,22 @@
     isLocked = false;
   }
 
+  function finishResultStep() {
+    if (!pendingOutcome) return;
+    if (resultTimer) {
+      clearTimeout(resultTimer);
+      resultTimer = null;
+    }
+    const outcome = pendingOutcome;
+    pendingOutcome = null;
+
+    if (outcome.gameOver) {
+      showEndScreen(outcome.endingKey);
+    } else {
+      loadNextCard();
+    }
+  }
+
   // Apply chosen side, show optional result sentence, then advance
   function commitChoice(side) {
     if (isLocked || !currentCard) return;
@@ -119,11 +217,14 @@
     isDragging = false;
 
     const chosenData = currentCard[side];
-    const flyX = side === "left" ? -380 : 380;
-    const flyRot = side === "left" ? -20 : 20;
+    const flyX = side === "left" ? -140 : 140;
+    const flyRot = side === "left" ? -12 : 12;
 
-    cardEl.style.transition = "transform 0.25s ease";
-    cardEl.style.transform = `translateX(${flyX}px) rotate(${flyRot}deg)`;
+    // Плавно уводим и скрываем карточку, чтобы она не конфликтовала с панелью последствий
+    cardEl.style.transition = "transform 0.22s ease, opacity 0.2s ease";
+    cardEl.style.transform = `translateX(${flyX}px) rotate(${flyRot}deg) scale(0.95)`;
+    cardEl.style.opacity = "0";
+    cardEl.style.pointerEvents = "none";
     updateEffectDots(null);
 
     const outcome = Game.choose(side);
@@ -133,15 +234,10 @@
 
     setTimeout(() => {
       if (message) {
+        pendingOutcome = outcome;
         resultText.textContent = message;
         resultBox.classList.remove("hidden");
-        setTimeout(() => {
-          if (outcome.gameOver) {
-            showEndScreen(outcome.endingKey);
-          } else {
-            loadNextCard();
-          }
-        }, RESULT_DELAY_MS);
+        resultTimer = setTimeout(finishResultStep, RESULT_DELAY_MS);
       } else if (outcome.gameOver) {
         showEndScreen(outcome.endingKey);
       } else {
@@ -150,38 +246,53 @@
     }, 220);
   }
 
+  // Вычисление допустимого предела свайпа, чтобы карта не уходила за границы экрана
+  function getMaxDragDistance() {
+    const safeViewportLimit = Math.max(105, (window.innerWidth - cardEl.offsetWidth) / 2 - 12);
+    return Math.min(MAX_DRAG_X, safeViewportLimit);
+  }
+
   // Drag handlers (mouse & touch via Pointer Events)
   function onPointerDown(e) {
     if (isLocked || !gameScreen.classList.contains("active")) return;
     isDragging = true;
     startX = e.clientX;
-    currentX = startX;
+    clampedDeltaX = 0;
     cardEl.style.transition = "none";
   }
 
   function onPointerMove(e) {
     if (!isDragging || isLocked || !currentCard) return;
-    currentX = e.clientX;
-    const deltaX = currentX - startX;
-    const rotate = Math.max(-16, Math.min(16, deltaX * 0.06));
-    const ratio = Math.min(Math.abs(deltaX) / SWIPE_THRESHOLD, 1);
+    const rawDeltaX = e.clientX - startX;
+    const limit = getMaxDragDistance();
+    clampedDeltaX = Math.max(-limit, Math.min(limit, rawDeltaX));
 
-    cardEl.style.transform = `translateX(${deltaX}px) rotate(${rotate}deg)`;
+    const rotate = Math.max(-14, Math.min(14, clampedDeltaX * 0.08));
+    const ratio = Math.min(Math.abs(clampedDeltaX) / SWIPE_THRESHOLD, 1);
 
-    if (deltaX < -12) {
-      cardBadge.textContent = currentCard.left.label;
+    cardEl.style.transform = `translateX(${clampedDeltaX}px) rotate(${rotate}deg)`;
+
+    if (clampedDeltaX < -12) {
+      cardBadgeText.textContent = currentCard.left.label;
+      cardBadge.classList.add("swipe-left");
+      cardBadge.classList.remove("swipe-right");
       cardBadge.style.opacity = String(ratio);
+
       choiceLeftEl.classList.add("active");
       choiceRightEl.classList.remove("active");
       updateEffectDots("left");
-    } else if (deltaX > 12) {
-      cardBadge.textContent = currentCard.right.label;
+    } else if (clampedDeltaX > 12) {
+      cardBadgeText.textContent = currentCard.right.label;
+      cardBadge.classList.add("swipe-right");
+      cardBadge.classList.remove("swipe-left");
       cardBadge.style.opacity = String(ratio);
+
       choiceRightEl.classList.add("active");
       choiceLeftEl.classList.remove("active");
       updateEffectDots("right");
     } else {
       cardBadge.style.opacity = "0";
+      cardBadge.classList.remove("swipe-left", "swipe-right");
       choiceLeftEl.classList.remove("active");
       choiceRightEl.classList.remove("active");
       updateEffectDots(null);
@@ -191,11 +302,10 @@
   function onPointerUp() {
     if (!isDragging) return;
     isDragging = false;
-    const deltaX = currentX - startX;
 
-    if (deltaX <= -SWIPE_THRESHOLD) {
+    if (clampedDeltaX <= -SWIPE_THRESHOLD) {
       commitChoice("left");
-    } else if (deltaX >= SWIPE_THRESHOLD) {
+    } else if (clampedDeltaX >= SWIPE_THRESHOLD) {
       commitChoice("right");
     } else {
       resetCardVisuals(true);
@@ -204,7 +314,16 @@
 
   // Keyboard support
   function onKeyDown(e) {
-    if (!gameScreen.classList.contains("active") || isLocked || isDragging) return;
+    if (!gameScreen.classList.contains("active")) return;
+
+    // Если открыта панель последствий — пробел или Enter сразу закрывают её
+    if (!resultBox.classList.contains("hidden") && (e.key === " " || e.key === "Enter")) {
+      e.preventDefault();
+      finishResultStep();
+      return;
+    }
+
+    if (isLocked || isDragging) return;
     if (e.key === "ArrowLeft") {
       e.preventDefault();
       updateEffectDots("left");
@@ -217,6 +336,11 @@
   }
 
   function startNewGame() {
+    if (resultTimer) {
+      clearTimeout(resultTimer);
+      resultTimer = null;
+    }
+    pendingOutcome = null;
     Game.start();
     renderState();
     showScreen(gameScreen);
@@ -230,6 +354,7 @@
 
     startBtn.addEventListener("click", startNewGame);
     restartBtn.addEventListener("click", startNewGame);
+    resultBox.addEventListener("click", finishResultStep);
 
     cardEl.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointermove", onPointerMove);
