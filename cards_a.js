@@ -8,7 +8,7 @@ const CARDS_A = [
     who: "Mei Tanaka, Botanist",
     text: "Captain, the algae vats are booming, crowding the air vents. Should we harvest early for food or let them oxygenate?",
     left: {
-      label: "Harvest early"
+      label: "Harvest early",
       effects: { food: 15, oxygen: -10, morale: 5 },
       result: "Fresh protein bars lift spirits, though cabin air turns stale."
     },
