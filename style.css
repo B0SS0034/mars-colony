@@ -44,7 +44,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(12, 9, 10, 0.45) 0%, rgba(12, 9, 10, 0.88) 85%);
+  background: rgba(12, 9, 10, 0.35);
 }
 
 /* 1. Оранжерея / Ботаника */
