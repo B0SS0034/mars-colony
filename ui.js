@@ -87,6 +87,71 @@ if (sceneBg) {
     };
     probe.src = src;
   }
+  // Best result = completed weeks, stored in localStorage
+  var BEST_KEY = "marsColonyBestWeeks";
+  function loadBest() {
+    try { return parseInt(localStorage.getItem(BEST_KEY), 10) || 0; } catch (e) { return 0; }
+  }
+  // Call after every Game.choose(); returns the current best
+  function saveBestIfHigher() {
+    var weeks = Game.getState().week - 1;   // completed weeks
+    var best = loadBest();
+    if (weeks > best) {
+     best = weeks;
+      try { localStorage.setItem(BEST_KEY, String(best)); } catch (e) {}
+    }
+    return best;
+  }
+  var Sound = (function () {
+    var ctx = null, muted = false;
+    // Create the context lazily (browsers need a user gesture first)
+    function ensure() {
+     if (!ctx) {
+       var AC = window.AudioContext || window.webkitAudioContext;
+       if (!AC) return null;
+        ctx = new AC();
+     }
+      if (ctx.state === "suspended") ctx.resume();
+      return ctx;
+   }
+   // One short note
+   function tone(freq, start, dur, type, vol) {
+     var c = ensure();
+     if (!c || muted) return;
+     var t = c.currentTime + start;
+      var o = c.createOscillator(), g = c.createGain();
+     o.type = type || "sine";
+      o.frequency.setValueAtTime(freq, t);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol || 0.15, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+     o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t + dur + 0.02);
+    }
+   var sounds = {
+      swipe:   function () { tone(320, 0, 0.07, "triangle"); tone(240, 0.05, 0.09, "triangle"); },
+      warning: function () { tone(180, 0, 0.15, "square", 0.08); tone(180, 0.2, 0.15, "square", 0.08); },
+      win:     function () { [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.15, 0.3, "sine"); }); },
+     lose:    function () { [392, 330, 262, 196].forEach(function (f, i) { tone(f, i * 0.2, 0.35, "sawtooth", 0.1); }); }
+   };
+    return {
+      play: function (name) { if (sounds[name]) sounds[name](); },
+     toggleMute: function () { muted = !muted; return muted; },
+     isMuted: function () { return muted; }
+    };
+  }
+  var res = Game.choose(side);{
+Sound.play("swipe");
+if (res.gameOver) Sound.play(res.endingKey === "victory" ? "win" : "lose");
+else if (isAnyMeterDanger(Game.getState())) Sound.play("warning"); // e.g. meter <= 15 or >= 85
+saveBestIfHigher();
+  }
+})();
+
+      
+
+
+  
   
   const startScreen = document.getElementById("start-screen");
   const gameScreen = document.getElementById("game-screen");
