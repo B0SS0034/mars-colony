@@ -28,7 +28,6 @@ body {
   user-select: none;
 }
 
-/* Фоны локаций — строго по размеру окна браузера на любых экранах */
 .scene-bg {
   position: fixed;
   top: 0;
@@ -48,12 +47,17 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* было cover */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
   object-position: center;
-  image-rendering: pixelated;
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
   will-change: opacity;
+}
+
+.bg-layer.active {
+  opacity: 1;
 }
 
 .bg-layer.active {
