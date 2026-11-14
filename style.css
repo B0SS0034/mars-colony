@@ -595,3 +595,19 @@ h1 {
   height: calc(var(--face-w) * 1.508);
   border-radius: calc(var(--face-w) * 0.045);
 }
+
+/* В режиме картинки плашку над карточкой не показываем */
+.card.has-face .card-header,
+.card.has-face .card-badge {
+  display: none;
+}
+
+/* Подписи выбора внизу делаем заметнее */
+.choice-label {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.choice-label.active {
+  font-size: 1rem;
+  text-shadow: 0 0 12px var(--accent-glow), 0 1px 4px rgba(0, 0, 0, 0.9);
+}
