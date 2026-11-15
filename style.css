@@ -910,3 +910,21 @@ html {
   .tutorial-hint { animation: none; }
   .sky-tint { transition: none; }
 }
+
+/* ===== End screen cleanup ===== */
+/* Description text: white and readable over the busy background */
+.intro-text {
+  color: var(--text);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.7);
+}
+/* Two stat pills in one row */
+.end-stats {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+}
+/* Fact at the bottom: quieter but still readable */
+#end-screen .fact-line {
+  margin-top: 6px;
+  color: var(--text);
+  opacity: 0.8;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+}
