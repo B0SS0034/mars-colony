@@ -2053,4 +2053,3 @@ const ENDINGS = {
   morale_high: { title: "Reckless Optimism", text: "Everyone is so happy they forget to wear helmets. The colony is now a very cheerful, albeit airless, utopia." },
   victory: { title: "Contact", text: "A blip appears on the radar. The supply ship is finally here. You survived 100 weeks, and you didn't even have to eat anyone. Good job, Captain." }
 };
-
