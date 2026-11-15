@@ -102,43 +102,177 @@ if (sceneBg) {
     }
     return best;
   }
+// Audio: procedural SFX + ambient Mars music (Web Audio API, no files, no network)
   var Sound = (function () {
-    var ctx = null, muted = false;
+    var SAVE_KEY = "marsColonySound";
+    var ctx = null, master = null, sfxBus = null, musicBus = null;
+    var settings = { music: 0.5, sfx: 0.7, muted: false };
+    var music = null;        // music graph (built once)
+    var musicOn = false;     // music loop running
+    var tension = 0;         // 1 = a meter is in danger (darker harmony)
+    var timer = null;        // note scheduler
+
+    // Minor-pentatonic notes for calm play, dissonant notes for danger
+    var CALM = [220, 261.63, 293.66, 329.63, 392, 440, 523.25];
+    var TENSE = [220, 233.08, 311.13, 329.63];
+
+    function clamp01(v) { v = Number(v); return isNaN(v) ? 0 : Math.max(0, Math.min(1, v)); }
+
+    // Load saved settings (localStorage may be blocked, so always try/catch)
+    try {
+      var raw = localStorage.getItem(SAVE_KEY);
+      if (raw) {
+        var s = JSON.parse(raw);
+        settings.music = clamp01(s.music);
+        settings.sfx = clamp01(s.sfx);
+        settings.muted = !!s.muted;
+      }
+    } catch (e) {}
+
+    function save() {
+      try { localStorage.setItem(SAVE_KEY, JSON.stringify(settings)); } catch (e) {}
+    }
+
+    // Push the current settings into the gain nodes
+    function applyVolumes() {
+      if (!ctx) return;
+      var t = ctx.currentTime;
+      master.gain.setTargetAtTime(settings.muted ? 0 : 1, t, 0.05);
+      sfxBus.gain.setTargetAtTime(settings.sfx, t, 0.05);
+      musicBus.gain.setTargetAtTime(settings.music * 0.6, t, 0.1);
+    }
+
     // Create the context lazily (browsers need a user gesture first)
     function ensure() {
-     if (!ctx) {
-       var AC = window.AudioContext || window.webkitAudioContext;
-       if (!AC) return null;
+      if (!ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
         ctx = new AC();
-     }
-      if (ctx.state === "suspended") ctx.resume();
+        master = ctx.createGain();
+        sfxBus = ctx.createGain();
+        musicBus = ctx.createGain();
+        sfxBus.connect(master);
+        musicBus.connect(master);
+        master.connect(ctx.destination);
+        applyVolumes();
+      }
+      if (ctx.state === "suspended" && !document.hidden) ctx.resume();
       return ctx;
-   }
-   // One short note
-   function tone(freq, start, dur, type, vol) {
-     var c = ensure();
-     if (!c || muted) return;
-     var t = c.currentTime + start;
+    }
+
+    // One short sound effect note
+    function tone(freq, start, dur, type, vol) {
+      var c = ensure();
+      if (!c || settings.muted || settings.sfx === 0) return;
+      var t = c.currentTime + start;
       var o = c.createOscillator(), g = c.createGain();
-     o.type = type || "sine";
+      o.type = type || "sine";
       o.frequency.setValueAtTime(freq, t);
       g.gain.setValueAtTime(0.0001, t);
       g.gain.exponentialRampToValueAtTime(vol || 0.15, t + 0.01);
       g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-     o.connect(g); g.connect(c.destination);
+      o.connect(g); g.connect(sfxBus);
       o.start(t); o.stop(t + dur + 0.02);
     }
-   var sounds = {
+
+    var sounds = {
       swipe:   function () { tone(320, 0, 0.07, "triangle"); tone(240, 0.05, 0.09, "triangle"); },
       warning: function () { tone(180, 0, 0.15, "square", 0.08); tone(180, 0.2, 0.15, "square", 0.08); },
       rare:    function () { tone(784, 0, 0.18, "sine", 0.1); tone(1175, 0.12, 0.35, "sine", 0.1); },
       win:     function () { [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.15, 0.3, "sine"); }); },
-     lose:    function () { [392, 330, 262, 196].forEach(function (f, i) { tone(f, i * 0.2, 0.35, "sawtooth", 0.1); }); }
-   };
+      lose:    function () { [392, 330, 262, 196].forEach(function (f, i) { tone(f, i * 0.2, 0.35, "sawtooth", 0.1); }); }
+    };
+
+    // ----- music -----
+
+    // Cheap reverb: a decaying noise burst used as an impulse response
+    function makeReverb(c) {
+      var len = Math.floor(c.sampleRate * 3);
+      var buf = c.createBuffer(2, len, c.sampleRate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.5);
+      }
+      var conv = c.createConvolver();
+      conv.buffer = buf;
+      return conv;
+    }
+
+    // Build the always-on drone and the shared effect buses
+    function buildMusic(c) {
+      var reverb = makeReverb(c);
+      var wet = c.createGain(); wet.gain.value = 0.7;
+      reverb.connect(wet); wet.connect(musicBus);
+      var dry = c.createGain(); dry.gain.value = 0.6;
+      dry.connect(musicBus);
+
+      // Low drone: detuned saws through a slowly moving low-pass filter
+      var filter = c.createBiquadFilter();
+      filter.type = "lowpass"; filter.frequency.value = 400; filter.Q.value = 2;
+      var droneGain = c.createGain(); droneGain.gain.value = 0;
+      filter.connect(droneGain); droneGain.connect(dry); droneGain.connect(reverb);
+      [[55, 0], [55, 7], [82.41, -5]].forEach(function (p) {
+        var o = c.createOscillator();
+        o.type = "sawtooth"; o.frequency.value = p[0]; o.detune.value = p[1];
+        o.connect(filter); o.start();
+      });
+      var lfo = c.createOscillator(), lfoGain = c.createGain();
+      lfo.frequency.value = 0.07; lfoGain.gain.value = 180;
+      lfo.connect(lfoGain); lfoGain.connect(filter.frequency); lfo.start();
+
+      return { reverb: reverb, dry: dry, filter: filter, droneGain: droneGain };
+    }
+
+    // One long soft pad note
+    function pad(freq) {
+      var t = ctx.currentTime;
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = "sine"; o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.07, t + 2.5);
+      g.gain.linearRampToValueAtTime(0.0001, t + 7);
+      o.connect(g); g.connect(music.dry); g.connect(music.reverb);
+      o.start(t); o.stop(t + 7.2);
+    }
+
+    // Pick notes every few seconds; darker notes and a brighter filter under tension
+    function schedule() {
+      if (!musicOn) return;
+      if (!document.hidden) {
+        var set = tension ? TENSE : CALM;
+        pad(set[Math.floor(Math.random() * set.length)]);
+        if (Math.random() < 0.4) pad(set[Math.floor(Math.random() * set.length)] * 2);
+        music.filter.frequency.setTargetAtTime(tension ? 700 : 400, ctx.currentTime, 2);
+      }
+      timer = setTimeout(schedule, 3500 + Math.random() * 3500);
+    }
+
+    // Stop the audio while the tab is hidden
+    document.addEventListener("visibilitychange", function () {
+      if (!ctx) return;
+      if (document.hidden) ctx.suspend(); else ctx.resume();
+    });
+
     return {
       play: function (name) { if (sounds[name]) sounds[name](); },
-     toggleMute: function () { muted = !muted; return muted; },
-     isMuted: function () { return muted; }
+      startMusic: function () {
+        var c = ensure();
+        if (!c || musicOn) return;
+        musicOn = true;
+        if (!music) music = buildMusic(c);
+        music.droneGain.gain.setTargetAtTime(0.05, c.currentTime, 3);  // slow fade in
+        schedule();
+      },
+      stopMusic: function () {
+        musicOn = false;
+        clearTimeout(timer);
+        if (music && ctx) music.droneGain.gain.setTargetAtTime(0, ctx.currentTime, 1);
+      },
+      setTension: function (on) { tension = on ? 1 : 0; },
+      getSettings: function () { return { music: settings.music, sfx: settings.sfx, muted: settings.muted }; },
+      setMusicVolume: function (v) { settings.music = clamp01(v); applyVolumes(); save(); },
+      setSfxVolume: function (v) { settings.sfx = clamp01(v); applyVolumes(); save(); },
+      setMuted: function (m) { settings.muted = !!m; applyVolumes(); save(); }
     };
   })();
   // True if any meter is close to 0 or 100
@@ -187,7 +321,12 @@ if (sceneBg) {
   const endWeeks = document.getElementById("end-weeks");
   const restartBtn = document.getElementById("restart-btn");
   const continueBtn = document.getElementById("continue-btn");
-  const muteBtn = document.getElementById("mute-btn");
+  const settingsBtn = document.getElementById("settings-btn");
+  const settingsPanel = document.getElementById("settings-panel");
+  const settingsClose = document.getElementById("settings-close");
+  const musicVol = document.getElementById("music-vol");
+  const sfxVol = document.getElementById("sfx-vol");
+  const muteAll = document.getElementById("mute-all");
   const endBest = document.getElementById("end-best");
 
   const meterEls = {};
@@ -444,6 +583,7 @@ if (sceneBg) {
     if (outcome.gameOver) Sound.play(outcome.endingKey === "victory" ? "win" : "lose");
     else if (isAnyMeterDanger(Game.getState())) Sound.play("warning");
     saveBestIfHigher();
+    Sound.setTension(isAnyMeterDanger(Game.getState()));
 
     const message = chosenData && chosenData.result ? chosenData.result.trim() : "";
     const isRare = String(currentCard.who).indexOf("Mission Control") !== -1;
@@ -530,6 +670,11 @@ if (sceneBg) {
 
   // Keyboard support
   function onKeyDown(e) {
+    // While the settings panel is open, the game ignores the keyboard
+    if (!settingsPanel.classList.contains("hidden")) {
+      if (e.key === "Escape") closeSettings();
+      return;
+    }
     if (!gameScreen.classList.contains("active")) return;
 
     // Если открыта панель последствий — пробел или Enter сразу закрывают её
@@ -558,9 +703,34 @@ if (sceneBg) {
     }
     pendingOutcome = null;
     Game.start();
+    Sound.setTension(false);
     renderState();
     showScreen(gameScreen);
     loadNextCard();
+  }
+
+  function openSettings() { settingsPanel.classList.remove("hidden"); }
+  function closeSettings() {
+    settingsPanel.classList.add("hidden");
+    settingsBtn.blur();
+  }
+
+  // Load saved audio settings into the controls and wire them up
+  function initSettings() {
+    const s = Sound.getSettings();
+    musicVol.value = Math.round(s.music * 100);
+    sfxVol.value = Math.round(s.sfx * 100);
+    muteAll.checked = s.muted;
+
+    settingsBtn.addEventListener("click", openSettings);
+    settingsClose.addEventListener("click", closeSettings);
+    settingsPanel.addEventListener("click", function (e) {
+      if (e.target === settingsPanel) closeSettings(); // click outside the card
+    });
+    musicVol.addEventListener("input", function () { Sound.setMusicVolume(musicVol.value / 100); });
+    sfxVol.addEventListener("input", function () { Sound.setSfxVolume(sfxVol.value / 100); });
+    sfxVol.addEventListener("change", function () { Sound.play("swipe"); }); // preview
+    muteAll.addEventListener("change", function () { Sound.setMuted(muteAll.checked); });
   }
 
   // Initialize start screen and event listeners
@@ -568,13 +738,12 @@ if (sceneBg) {
     introTitle.textContent = INTRO.title;
     introText.textContent = INTRO.text;
       
-    // Mute toggle; the button keeps focus off so Space/Enter do not re-trigger it
-    muteBtn.addEventListener("click", function () {
-      muteBtn.textContent = Sound.toggleMute() ? "Sound: off" : "Sound: on";
-      muteBtn.blur();
-    });
+    initSettings();
 
-    startBtn.addEventListener("click", startNewGame);
+    startBtn.addEventListener("click", function () {
+      Sound.startMusic(); // first click: the browser allows audio now
+      startNewGame();
+    });
     restartBtn.addEventListener("click", startNewGame);
     continueBtn.addEventListener("click", continueGame);
     resultBox.addEventListener("click", finishResultStep);

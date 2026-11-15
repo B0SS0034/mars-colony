@@ -11,7 +11,20 @@
   <div id="scene-bg" class="scene-bg" data-bg="command"></div>
 
   <div id="app">
-    <button id="mute-btn" class="mute-btn" type="button" aria-label="Toggle sound">Sound: on</button>
+    <button id="settings-btn" class="settings-btn" type="button" aria-label="Settings">&#9881;&#xFE0E;</button>
+    <div id="settings-panel" class="settings-panel hidden" role="dialog" aria-label="Settings">
+      <div class="settings-card">
+        <h2>Settings</h2>
+        <label class="set-row"><span>Music</span>
+          <input id="music-vol" type="range" min="0" max="100" value="50" />
+        </label>
+        <label class="set-row"><span>Sound effects</span>
+          <input id="sfx-vol" type="range" min="0" max="100" value="70" />
+        </label>
+        <label class="set-check"><input id="mute-all" type="checkbox" /> Mute all sound</label>
+        <button id="settings-close" class="btn-primary" type="button">Close</button>
+      </div>
+    </div>
     <!-- Start Screen -->
     <section id="start-screen" class="screen active">
       <div class="mars-orb"></div>
@@ -83,6 +96,7 @@
         </div>
 
         <div id="result-box" class="result-box hidden" title="Click to continue">
+          <span class="result-kicker">After-action report</span>
           <p id="result-text"></p>
           <span class="result-skip">Click or press Space to continue</span>
         </div>

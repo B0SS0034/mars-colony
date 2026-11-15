@@ -800,3 +800,71 @@ html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
 }
+
+/* ===== Settings (gear button + panel) ===== */
+.settings-btn {
+  position: fixed; top: 10px; right: 10px; z-index: 50;
+  width: 40px; height: 40px; padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5); color: #fff;
+  font-size: 22px; line-height: 1; cursor: pointer;
+}
+.settings-btn:hover { background: rgba(0, 0, 0, 0.7); }
+.settings-panel {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+}
+.settings-card {
+  width: min(88vw, 340px); padding: 22px;
+  border-radius: 18px; border: 2px solid var(--accent);
+  background: linear-gradient(160deg, #231819, #120c0d);
+  box-shadow: 0 0 28px var(--accent-glow);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.settings-card h2 {
+  font-size: 1.05rem; text-align: center; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent-soft);
+}
+.set-row { display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; }
+.set-row input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+.set-check { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; cursor: pointer; }
+.set-check input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* ===== Consequence panel: compact square, dark glass ===== */
+.result-box,
+.arena.has-face .result-box {
+  --sq: min(88vw, 360px);
+  width: var(--sq);
+  height: var(--sq);
+  border-radius: 22px;
+  border: 2px solid var(--accent);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224, 83, 44, 0.22), transparent 60%),
+    linear-gradient(160deg, #231819, #120c0d);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 28px var(--accent-glow), 0 16px 40px rgba(0, 0, 0, 0.7);
+  padding: 22px 22px 16px;
+  gap: 12px;
+  font-family: inherit;
+  font-size: clamp(1rem, 4.2vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+}
+.result-box p { margin: auto 0; }  /* text centered between title and hint */
+.result-kicker {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent-soft);
+}
+.result-kicker::before,
+.result-kicker::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 140, 94, 0.6), transparent);
+}
+.result-skip { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+/* Rare Mission Control cards keep the gold frame on the new panel */
+.arena.rare .result-box {
+  border-color: #ffd24a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 30px rgba(255, 200, 60, 0.55), 0 16px 40px rgba(0, 0, 0, 0.7);
+}
