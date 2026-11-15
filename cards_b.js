@@ -488,7 +488,356 @@ who: "Clara Lindqvist, Colony Teacher",
 text: "Captain, Mars is passing through a comet trail tonight—shooting stars every minute! Dim the dome lights to watch?",
 left:  { label: "Dim lights",  effects: { energy: 10, morale: 15, oxygen: -5 }, result: "150 people press against the glass in awe as green streaks burn across the night." },
 right: { label: "Keep lights", effects: { morale: -10, energy: -5 },            result: "Work shifts stay on schedule, while everyone glares out at the washed-out sky." }
+}, {
+id: "b_191",
+who: "Mission Control (Earth)",
+text: "Captain, perihelion heat puffed up Mars's upper air right when our supply ship aerobraked. Scan for burn debris?",
+left:  { label: "Scan orbit",      effects: { energy: -10, food: 10 },   result: "Extra drag burned the main hull, yet we salvage two intact cargo pods." },
+right: { label: "Save dish power", effects: { energy: 10, morale: -10 }, result: "Batteries stay full while the crew mourns without closure." }
 },
+{
+id: "b_192",
+who: "Lucas Vance, Ice Miner",
+text: "Captain, deep ice has way more heavy hydrogen than normal water—clues to Mars's lost oceans! Bottle some for Earth labs?",
+left:  { label: "Bottle samples", effects: { oxygen: -5, morale: 10 }, result: "Scientists love our deuterium data, though we lose drinking water." },
+right: { label: "Melt for tea",   effects: { oxygen: 10, morale: -5 }, result: "Heavy water brews fine tea, even if geologists call you a vandal." }
+},
+{
+id: "b_193",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, Mars's skies are super clear lately—without floating dust to trap sunlight, air temps are plunging! Boost heaters?",
+left:  { label: "Boost heaters",  effects: { energy: -15, morale: 10 }, result: "Warm bunks save the week while the battery banks take a beating." },
+right: { label: "Extra blankets", effects: { energy: 10, morale: -10 }, result: "Without smoke-sized dust warming the sky, everyone shivers in coats." }
+},
+{
+id: "b_194",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, sensors show extra ozone drifting from the north pole, so miners want to skip UV visors. Allow it?",
+left:  { label: "Keep visors", effects: { morale: -10, oxygen: 5 },  result: "Smart call—Mars's air is way too thin for ozone to stop harsh UV." },
+right: { label: "Skip visors", effects: { morale: 10, energy: -10 }, result: "Miners enjoy clear views until eye-burn ointment runs completely dry." }
+},
+{
+id: "b_195",
+who: "Mei Tanaka, Botanist",
+text: "Captain, winds blew bright dust off southern rocks, making them look like green plants from orbit! Drive out to check?",
+left:  { label: "Send rover", effects: { energy: -10, morale: -5, oxygen: 5 }, result: "Just dark, coarse sand—same optical illusion that fooled early astronomers." },
+right: { label: "Stay put",   effects: { energy: 5, morale: -10 },             result: "You explain wind-scoured sand physics, crushing everyone's alien plant hopes." }
+},
+{
+id: "b_196",
+who: "Clara Lindqvist, Colony Teacher",
+text: "Captain, a Martian year is 687 Earth days, so the kids are technically half their age! Celebrate Mars or Earth birthdays?",
+left:  { label: "Earth dates", effects: { morale: 10, food: -5 }, result: "Twice as many tiny birthday crackers keep everyone smiling." },
+right: { label: "Mars years",  effects: { food: 5, morale: -10 }, result: "Waiting 687 days for cake makes even the adults grumpy." }
+},
+{
+id: "b_197",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, Mars swung far from the Sun, making sunlight 25% dimmer and chilling the planet 20 degrees. Dim the lab lights?",
+left:  { label: "Dim labs",    effects: { energy: 15, morale: -10 }, result: "Batteries survive the long aphelion winter while researchers squint." },
+right: { label: "Keep bright", effects: { energy: -15, morale: 10 }, result: "Warm, bright corridors lift spirits as solar output drops sharply." }
+},
+{
+id: "b_198",
+who: "Samir Patel, Colony Cook",
+text: "Captain, Earth sent weather news: Venus has sulfuric acid rain, while we just have dry dust. Celebrate with extra rations?",
+left:  { label: "Extra rations", effects: { morale: 15, food: -10 }, result: "Nothing makes algae paste taste sweeter than knowing it isn't acid smog." },
+right: { label: "Save food",     effects: { food: 10, morale: -10 }, result: "The pantry stays stocked, though nobody feels lucky tonight." }
+},
+{
+id: "b_199",
+who: "Mission Control (Earth)",
+text: "Captain, solar wind protons are slamming into Mars's upper air and kicking hydrogen into space. Shield the comms dish?",
+left:  { label: "Shield dish",   effects: { energy: -10, morale: 5 },  result: "The antenna survives the proton blast, keeping our Earth link alive." },
+right: { label: "Leave exposed", effects: { energy: 10, morale: -10 }, result: "Static fries a receiver board, cutting off family messages for days." }
+},
+{
+id: "b_200",
+who: "Lucas Vance, Ice Miner",
+text: "Captain, your predecessor's logs point to ancient water frozen deep underground. Burn drill power to reach it?",
+left:  { label: "Drill deep",       effects: { energy: -15, oxygen: 15 }, result: "We tap a billion-year-old ice lens, boosting water and air reserves." },
+right: { label: "Stick to surface", effects: { energy: 10, oxygen: -10 }, result: "Safe and cheap, though shallow ice seams are running dangerously thin." }
+},
+{
+id: "b_201",
+who: "Mei Tanaka, Botanist",
+text: "Captain, fleecy ice-crystal clouds are carrying water vapor from the north pole right over us! Deploy frost nets?",
+left:  { label: "Deploy nets",  effects: { oxygen: 10, energy: -10 }, result: "Harvesting passing cloud ice tops off our tanks without deep drilling." },
+right: { label: "Stay indoors", effects: { energy: 5, oxygen: -5 },   result: "The seasonal water-transport clouds drift south untouched." }
+},
+{
+id: "b_202",
+who: "Mission Control (Earth)",
+text: "Captain, Earth and Mars hit opposition soon—our closest approach in two years! Burn power for a massive data dump?",
+left:  { label: "Stream data", effects: { energy: -15, morale: 15 }, result: "Crisp video calls with families on Earth recharge everyone's spirits." },
+right: { label: "Text only",   effects: { energy: 10, morale: -10 }, result: "We save watts, missing our best signal window until the next orbit." }
+},
+{
+id: "b_203",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, smoke-sized dust motes stay suspended for months and sneak past airlock seals. Upgrade the hab filters?",
+left:  { label: "Upgrade filters", effects: { energy: -10, oxygen: 10 }, result: "Cleaner lungs across the dome, though fan power draw jumps noticeably." },
+right: { label: "Keep current",    effects: { energy: 10, morale: -10 }, result: "Micron dust keeps everyone coughing through the night shift." }
+},
+{
+id: "b_204",
+who: "Mei Tanaka, Botanist",
+text: "Captain, Earth scientists want a vial of our meltwater to measure deuterium ratios and model ancient oceans. Send some?",
+left:  { label: "Send vial",       effects: { oxygen: -5, morale: 10 }, result: "Helping solve Mars's watery past makes the crew feel like true pioneers." },
+right: { label: "Keep every drop", effects: { oxygen: 5, morale: -10 }, result: "With the supply ship gone, you refuse to spare even a shot glass." }
+},
+{
+id: "b_205",
+who: "Mateo Silva, Rover Pilot",
+text: "Captain, Mars's thin air heats and cools in mere hours, creating wild turbulence for our weather drone. Launch anyway?",
+left:  { label: "Launch drone", effects: { energy: -10, oxygen: 10 }, result: "We map sudden updrafts and spot a hidden frost hollow before crashing." },
+right: { label: "Ground drone", effects: { energy: 5, oxygen: -5 },   result: "The drone stays intact, yet we miss vital humidity readings." }
+},
+{
+id: "b_206",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, near the Sun, water shoots high into the sky where UV splits it into escaping atoms. Seal outdoor vents?",
+left:  { label: "Seal vents", effects: { oxygen: 10, energy: -10 }, result: "Zero steam escapes to be shredded by sunlight into space-bound hydrogen." },
+right: { label: "Leave open", effects: { oxygen: -10, energy: 5 },  result: "Valves run easy, while precious water atoms literally boil off Mars." }
+},
+{
+id: "b_207",
+who: "Mateo Silva, Rover Pilot",
+text: "Captain, logs show the missing supply ship arrived during southern dust-scouring winds. Search the coarse sand plains?",
+left:  { label: "Search plains", effects: { energy: -15, oxygen: -10, food: 15 }, result: "Scoured dark sand makes tracking easy—we find an intact ration pod!" },
+right: { label: "Hold base",     effects: { energy: 10, morale: -10 },             result: "Fuel stays safe, yet rumors about abandoned cargo sour dinner." }
+},
+{
+id: "b_208",
+who: "Clara Lindqvist, Colony Teacher",
+text: "Captain, kids asked why Earth has oceans, Venus has acid rain, and Mars froze if all three sit in the habitable zone. Debate?",
+left:  { label: "Host debate",  effects: { morale: 10, energy: -5 }, result: "Comparing our sister worlds turns a bleak evening into lively science." },
+right: { label: "Assign essay", effects: { energy: 5, morale: -10 }, result: "Quiet study hall saves power, though the kids groan at homework." }
+},
+{
+id: "b_209",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, vented shower steam rises and chemically destroys Mars's upper-atmosphere ozone! Enforce short cold showers?",
+left:  { label: "Cold showers", effects: { oxygen: 10, morale: -15 }, result: "Air recycling improves and local ozone holds steady, at the cost of joy." },
+right: { label: "Hot showers",  effects: { morale: 15, oxygen: -10 }, result: "Steam rises into the thin sky while everyone sings in bliss." }
+},
+{
+id: "b_210",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, harsh UV reactions kick upper-air atoms fast enough to beat Mars's gravity. Run our UV spectrometer tonight?",
+left:  { label: "Run sensor", effects: { energy: -10, morale: 5 }, result: "Tracking super-thermal atoms helps us predict solar radiation spikes." },
+right: { label: "Save watts", effects: { energy: 10, oxygen: -5 }, result: "Batteries rest, though we miss an early warning on solar wind surges." }
+},
+{
+id: "b_211",
+who: "Lucas Vance, Ice Miner",
+text: "Captain, winds stripped fine dust off the south plains, leaving dark, coarse sand that absorbs heat. Haul some for the dome?",
+left:  { label: "Haul dark sand", effects: { energy: 15, oxygen: -10 }, result: "Spreading low-albedo sand around the base passively warms our floor." },
+right: { label: "Leave it",       effects: { oxygen: 5, energy: -5 },   result: "Suit air stays conserved while heaters work overtime against the frost." }
+},
+{
+id: "b_212",
+who: "Mission Control (Earth)",
+text: "Captain, 1970s Viking missions saw a dusty, warm Mars, so our backup radiators are oversized. Strip one for spare parts?",
+left:  { label: "Strip radiator", effects: { oxygen: 10, energy: -5 }, result: "Extra tubing fixes leaky air valves in today's cooler, clearer climate." },
+right: { label: "Keep intact",    effects: { energy: 5, oxygen: -5 },  result: "Safe against a sudden global dust storm, though pipe leaks persist." }
+},
+{
+id: "b_213",
+who: "Samir Patel, Colony Cook",
+text: "Captain, hard to believe three billion years ago we could've fished in Martian rivers instead of eating algae. Serve soy fish?",
+left:  { label: "Soy fish sticks", effects: { morale: 10, food: -5 }, result: "Shaping green paste like trout makes everyone laugh through dinner." },
+right: { label: "Regular cubes",   effects: { food: 5, morale: -10 }, result: "Efficient rations, zero imagination, and plenty of sighs at the table." }
+},
+{
+id: "b_214",
+who: "Samir Patel, Colony Cook",
+text: "Captain, deuterium-heavy ice from the deep core melts slightly warmer, slush-clogging kitchen pipes! Flush with boiling water?",
+left:  { label: "Boil flush",  effects: { energy: -10, food: 10 }, result: "Pipes clear fast and soup is back on, though the kettles drain power." },
+right: { label: "Thaw slowly", effects: { energy: 5, food: -10 },  result: "Power holds steady while dinner gets delayed by three hungry hours." }
+},
+{
+id: "b_215",
+who: "Mission Control (Earth)",
+text: "Captain, Mars is so far from the Sun that space telescopes barely see our faint upper air. Fire a calibration laser?",
+left:  { label: "Fire laser",    effects: { energy: -15, morale: 10 }, result: "Shooting a green beam toward Hubble makes the crew feel connected again." },
+right: { label: "Conserve grid", effects: { energy: 10, morale: -10 }, result: "Sensible power discipline, though nobody likes feeling invisible." }
+},
+{
+id: "b_216",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, your predecessor's notes say a supply drone burned up when warm air expanded unexpectedly. Recover its black box?",
+left:  { label: "Recover box", effects: { oxygen: -10, energy: -5, food: 10 }, result: "We find intact seed packets beside the scorched aerobraking shield." },
+right: { label: "Leave wreck", effects: { oxygen: 5, morale: -10 },             result: "Suit seals stay fresh, while the vanished captain's trail goes cold." }
+},
+{
+id: "b_217",
+who: "Mei Tanaka, Botanist",
+text: "Captain, sunlight swings 40% across Mars's oval orbit, confusing our greenhouse skylights. Switch to pure LED cycles?",
+left:  { label: "Pure LEDs",   effects: { food: 15, energy: -15 }, result: "Steady artificial sun boosts lettuce yields while draining the batteries." },
+right: { label: "Natural sky", effects: { energy: 10, food: -10 }, result: "We save watts, though uneven orbital sunlight stunts the wheat." }
+},
+{
+id: "b_218",
+who: "Lucas Vance, Ice Miner",
+text: "Captain, unlike volcanic Venus, Mars's volcanoes died long ago, locking sulfur in frozen veins. Mine it for fertilizer?",
+left:  { label: "Mine sulfur", effects: { food: 15, oxygen: -10 }, result: "Soil acidity balances out for bumper crops, though dust fouls air filters." },
+right: { label: "Skip vein",   effects: { oxygen: 5, food: -5 },   result: "Clean airlocks today, bland and meager harvests next month." }
+},
+{
+id: "b_219",
+who: "Mateo Silva, Rover Pilot",
+text: "Captain, thick fleecy water-ice clouds just rolled over the ridge, dropping visibility to zero. Delay the battery convoy?",
+left:  { label: "Delay convoy", effects: { energy: -10, oxygen: 5 },  result: "Drivers stay safe indoors while Sector B runs on reserve cells." },
+right: { label: "Drive blind",  effects: { energy: 10, morale: -10 }, result: "Power arrives on time, though scraping a boulder terrifies the drivers." }
+},
+{
+id: "b_220",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, sudden afternoon heat puffed the atmosphere upward, dragging down our relay satellite! Fire its booster?",
+left:  { label: "Fire booster", effects: { energy: -10, morale: 10 }, result: "The relay climbs out of atmospheric drag, saving our Earth link." },
+right: { label: "Save fuel",    effects: { energy: 5, morale: -10 },  result: "Signal drops out for hours every afternoon as the orbit decays." }
+},
+{
+id: "b_221",
+who: "Mission Control (Earth)",
+text: "Captain, because Earth and Mars only align closely every two years, no relief ship can launch for months. Tell the crew?",
+left:  { label: "Tell truth",  effects: { morale: -15, food: 15 }, result: "Brutal orbital math kills false hope—and gets everyone rationing fast." },
+right: { label: "Soften news", effects: { morale: 10, food: -10 }, result: "People stay cheerful, eating like a rescue rocket is right around the corner." }
+},
+{
+id: "b_222",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, Mars is so cold and dry nowadays that outdoor tools barely rust at all. Store spare air tanks outside?",
+left:  { label: "Store outside", effects: { oxygen: 10, energy: -5 }, result: "Corridors clear up, though cold valves need warming before use." },
+right: { label: "Keep inside",   effects: { energy: 5, morale: -5 },  result: "Warm tanks ready anytime, even if everyone trips over them in halls." }
+},
+{
+id: "b_223",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, a rookie lifted his visor outside, assuming Mars's north-pole ozone surplus blocks UV rays. Treat his sunburn?",
+left:  { label: "Use aloe gel", effects: { food: -5, morale: 10 },  result: "Our greenhouse aloe soothes his face—and teaches everyone UV physics." },
+right: { label: "Cold packs",   effects: { energy: -5, morale: -5 }, result: "He heals slowly while nursing a bright red nose and bruised pride." }
+},
+{
+id: "b_224",
+who: "Mateo Silva, Rover Pilot",
+text: "Captain, your predecessor tracked seasonal ice clouds drifting south right before he vanished. Follow his trail?",
+left:  { label: "Follow trail", effects: { energy: -15, oxygen: 10 }, result: "We find his cached frost collectors still full of pure water—but no sign of him." },
+right: { label: "Stay home",    effects: { energy: 10, morale: -10 }, result: "Batteries stay charged, yet his empty rover seat haunts the garage." }
+},
+{
+id: "b_225",
+who: "Mission Control (Earth)",
+text: "Captain, astronomers use our Martian weather logs to model rocky exoplanets around distant stars. Stream live telemetry?",
+left:  { label: "Stream logs", effects: { energy: -10, morale: 10 }, result: "Knowing our struggle helps map alien worlds lifts everyone's spirits." },
+right: { label: "Send weekly", effects: { energy: 10, morale: -5 },  result: "Dish power stays low, though Earth scientists send grumpy reminders." }
+},
+{
+id: "b_226",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, swirling dust lifted micron-sized particles skyward, absorbing sunlight and warming the dome! Throttle heaters?",
+left:  { label: "Throttle down", effects: { energy: 15, oxygen: -5 },  result: "Airborne dust heats the air for free, though filters clog faster." },
+right: { label: "Keep steady",   effects: { oxygen: 5, energy: -10 }, result: "Clean air flows smoothly while heaters burn unnecessary watts." }
+},
+{
+id: "b_227",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, sunlight splits water so light hydrogen escapes to space while oxygen rusts the soil red. Bake rust for O2?",
+left:  { label: "Bake regolith", effects: { oxygen: 15, energy: -15 }, result: "Heating iron-oxide dirt releases trapped oxygen—and drains the grid." },
+right: { label: "Leave dirt",    effects: { energy: 10, oxygen: -10 }, result: "Power stays healthy while oxygen tanks slowly tick downward." }
+},
+{
+id: "b_228",
+who: "Samir Patel, Colony Cook",
+text: "Captain, miners keep joking our soup is 'extra heavy' from Martian deuterium. Host an open-mic night to roast the menu?",
+left:  { label: "Open mic",     effects: { morale: 15, energy: -5 }, result: "Heavy-water jokes bring the house down, making thin broth go down easy." },
+right: { label: "Quiet dinner", effects: { energy: 5, morale: -10 }, result: "Lights dim early to save power while everyone eats in silence." }
+},
+{
+id: "b_229",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, without dusty air to trap heat, clear Martian nights plummet way below freezing. Issue electric blankets?",
+left:  { label: "Issue blankets", effects: { energy: -15, morale: 15 }, result: "Cozy bunks keep colds away while the night-shift batteries groan." },
+right: { label: "Double socks",   effects: { energy: 10, morale: -10 }, result: "Grid holds strong, though breath fogs inside the dorms by dawn." }
+},
+{
+id: "b_230",
+who: "Clara Lindqvist, Colony Teacher",
+text: "Captain, Mars tilts like Earth, yet its thin air makes winter brutally cold. Turn the next cold snap into a survival drill?",
+left:  { label: "Run drill",    effects: { oxygen: 10, morale: -10 }, result: "Everyone masters thermal suit seals, even if the kids hate pop quizzes." },
+right: { label: "Normal class", effects: { morale: 5, oxygen: -5 },   result: "Warm classrooms keep moods up while suit-seal skills get rusty." }
+},
+{
+id: "b_231",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, bright streaks last month match our supply ship burning up in unexpectedly puffed-up air. Hunt for melted alloy?",
+left:  { label: "Hunt scrap",  effects: { oxygen: -10, energy: 10 }, result: "We recover scorched titanium plates—proof of what happened to the ship." },
+right: { label: "Stay inside", effects: { oxygen: 5, morale: -10 },  result: "Airlocks stay sealed, leaving the crew haunted by unanswered questions." }
+},
+{
+id: "b_232",
+who: "Mission Control (Earth)",
+text: "Captain, a solar flare is hurling fast protons straight into Mars's unshielded upper air. Power down external sensors?",
+left:  { label: "Power down",     effects: { energy: 10, oxygen: -5 }, result: "Circuits survive the proton storm, though we fly blind on air pressure." },
+right: { label: "Keep recording", effects: { energy: -15, morale: 5 }, result: "We capture wild atmospheric escape spikes before a surge trips breakers." }
+},
+{
+id: "b_233",
+who: "Lucas Vance, Ice Miner",
+text: "Captain, half of Mars's ancient oceans escaped to space and the rest froze underground. Blast through the permafrost?",
+left:  { label: "Blast deep", effects: { energy: -15, oxygen: 15, morale: -5 }, result: "We hit pristine fossil ice, though the seismic boom rattles every mug." },
+right: { label: "Chip slow",  effects: { energy: 5, oxygen: -5 },               result: "Quiet work keeps nerves calm while water tanks fill at a crawl." }
+},
+{
+id: "b_234",
+who: "Clara Lindqvist, Colony Teacher",
+text: "Captain, forecast says cool, clear skies with high clouds—way nicer than Venus's sulfuric acid rain! Hold outdoor gym?",
+left:  { label: "Outdoor gym", effects: { morale: 15, oxygen: -10 }, result: "Low-gravity leaps under a crisp pink sky thrill the kids—and drain suit air." },
+right: { label: "Indoor laps", effects: { oxygen: 5, morale: -10 },  result: "Air stays inside the dome while kids bounce off the corridor walls." }
+},
+{
+id: "b_235",
+who: "Mei Tanaka, Botanist",
+text: "Captain, warm storms shoot greenhouse humidity straight toward space in hours, not slow leaks! Seal the roof vents?",
+left:  { label: "Seal vents",   effects: { food: 10, oxygen: 5, energy: -10 }, result: "Trapping moisture keeps tomatoes plump, though dehumidifiers work overtime." },
+right: { label: "Keep airflow", effects: { energy: 10, food: -10 },            result: "Fans run cheap while dry air wilts our leafy greens by evening." }
+},
+{
+id: "b_236",
+who: "Mei Tanaka, Botanist",
+text: "Captain, with no supply ship coming, every liter of leaked steam gets split by sunlight and lost forever. Patch the dome?",
+left:  { label: "Patch dome",     effects: { oxygen: 15, energy: -10, morale: -5 }, result: "Sealing micro-cracks stops water escape, though resin fumes sting noses." },
+right: { label: "Wait till dawn", effects: { morale: 5, oxygen: -10 },              result: "Crews get a full night's sleep while precious humidity slips into space." }
+},
+{
+id: "b_237",
+who: "Mateo Silva, Rover Pilot",
+text: "Captain, we're driving north where ozone peaks! Pack lighter radiation shielding so we can haul back extra ice?",
+left:  { label: "Light shield", effects: { oxygen: 15, morale: -10 }, result: "Big ice haul, though Amara scolds you because Martian ozone barely blocks UV." },
+right: { label: "Full armor",   effects: { oxygen: -5, morale: 5 },   result: "Safe return from the northern dunes, even if the cargo sled is half empty." }
+},
+{
+id: "b_238",
+who: "Elena Voss, Chief Engineer",
+text: "Captain, dark, wind-scoured sand in the south absorbs way more sunlight than dusty plains. Move a solar array there?",
+left:  { label: "Move array", effects: { energy: 15, oxygen: -10 }, result: "Warm dark sand prevents frost buildup on panels, costing suit air to install." },
+right: { label: "Keep close", effects: { oxygen: 5, energy: -5 },   result: "Easy maintenance near the airlock, though morning frost cuts power output." }
+},
+{
+id: "b_239",
+who: "Dr. Amara Okafor, Colony Doctor",
+text: "Captain, Earth shines like a bright star during opposition, and half the crew is up staring instead of sleeping. Curfew?",
+left:  { label: "Enforce curfew", effects: { energy: 10, morale: -10 }, result: "Rested crews hit morning shifts sharp, grumbling about missing home." },
+right: { label: "Let them gaze",  effects: { morale: 15, energy: -10 }, result: "Watching that pale blue dot brings quiet hope—and very sleepy engineers." }
+},
+{
+id: "b_240",
+who: "Mission Control (Earth)",
+text: "Captain, Mars lost its oceans over four billion years; Earth asks if our water recyclers still hit 99%. Run a stress test?",
+left:  { label: "Stress test",   effects: { oxygen: 10, energy: -10, morale: -5 }, result: "We hit 99.2% recovery—proving we won't share Mars's dry fate—after a noisy night." },
+right: { label: "Send old logs", effects: { energy: 5, oxygen: -5 },               result: "Smooth night in the hab, though a tiny recycler leak goes unnoticed." }
+}
 
 ];
 
