@@ -457,6 +457,7 @@ if (sceneBg) {
     });
     const displayWeek = Math.min(state.week, 100);
     weekCounter.textContent = `Week ${displayWeek} of 100`;
+    Extras.setSky(displayWeek);
   }
 
   // Highlight dots above meters affected by the previewed side
@@ -533,6 +534,7 @@ if (sceneBg) {
     // Continue is offered only after victory
     continueBtn.classList.toggle("hidden", endingKey !== "victory");
     showScreen(endScreen);
+    Extras.onGameEnd(endingKey);
     isLocked = false;
   }
 
@@ -564,6 +566,7 @@ if (sceneBg) {
     if (isLocked || !currentCard) return;
     isLocked = true;
     isDragging = false;
+    Extras.hideTutorial();
 
     const chosenData = currentCard[side];
     const flyX = side === "left" ? -140 : 140;
@@ -706,6 +709,7 @@ if (sceneBg) {
     Sound.setTension(false);
     renderState();
     showScreen(gameScreen);
+    Extras.onGameStart();
     loadNextCard();
   }
 
@@ -733,6 +737,144 @@ if (sceneBg) {
     muteAll.addEventListener("change", function () { Sound.setMuted(muteAll.checked); });
   }
 
+// Extras: endings gallery, "Did you know?" facts, first-run hint, sky tint
+  var Extras = (function () {
+    var ENDING_KEYS = [
+      "oxygen_low", "oxygen_high", "food_low", "food_high",
+      "energy_low", "energy_high", "morale_low", "morale_high", "victory"
+    ];
+    var ENDINGS_SAVE = "marsColonyEndings";
+    var TUTORIAL_SAVE = "marsColonyTutorialSeen";
+
+    var FACTS = [
+      "A sol, one Martian day, lasts 24 hours and 39 minutes.",
+      "Radio signals take from about 3 to 22 minutes to travel between Mars and Earth.",
+      "Martian soil contains toxic perchlorates, so it must be treated before farming.",
+      "NASA's MOXIE experiment on Perseverance made oxygen from Martian carbon dioxide.",
+      "The Martian air is about 95% carbon dioxide, and its pressure is under 1% of Earth's.",
+      "Global dust storms can darken Mars for weeks and starve solar panels of light.",
+      "Mars has no global magnetic field, so its surface gets much more radiation than Earth's.",
+      "Gravity on Mars is only about 38% of Earth's.",
+      "Transfer windows between Earth and Mars open roughly every 26 months.",
+      "Water ice lies under the surface of Mars at mid and high latitudes.",
+      "A year on Mars lasts 687 Earth days.",
+      "The average surface temperature on Mars is around -60 degrees Celsius."
+    ];
+
+    // Sky tint: one phase per 4 weeks, repeating every 20 weeks
+    // day, dusty haze, sunset, night, dawn
+    var SKY = [
+      "rgba(0, 0, 0, 0)",
+      "rgba(200, 120, 60, 0.18)",
+      "rgba(150, 50, 30, 0.30)",
+      "rgba(8, 12, 45, 0.50)",
+      "rgba(90, 60, 110, 0.25)"
+    ];
+
+    var el = {};
+
+    // ----- saved data (localStorage may be blocked, so always try/catch) -----
+    function loadFound() {
+      try {
+        var a = JSON.parse(localStorage.getItem(ENDINGS_SAVE));
+        return Array.isArray(a) ? a : [];
+      } catch (e) { return []; }
+    }
+    function saveFound(a) {
+      try { localStorage.setItem(ENDINGS_SAVE, JSON.stringify(a)); } catch (e) {}
+    }
+    function randomFact() {
+      return FACTS[Math.floor(Math.random() * FACTS.length)];
+    }
+
+    // Short hint shown for an ending, built from its key
+    function hintFor(key) {
+      if (key === "victory") return "Survive 100 weeks";
+      var parts = key.split("_");
+      var name = parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+      return name + (parts[1] === "low" ? " too low" : " too high");
+    }
+
+    // Rebuild the endings list and the counters
+    function renderGallery() {
+      var found = loadFound();
+      if (el.btn) el.btn.textContent = "Endings " + found.length + " / " + ENDING_KEYS.length;
+      if (!el.list) return;
+      el.list.innerHTML = "";
+      ENDING_KEYS.forEach(function (key) {
+        var unlocked = found.indexOf(key) !== -1 && ENDINGS[key];
+        var li = document.createElement("li");
+        li.className = unlocked ? "found" : "locked";
+        var title = document.createElement("strong");
+        title.textContent = unlocked ? ENDINGS[key].title : "???";
+        var sub = document.createElement("span");
+        sub.textContent = unlocked ? hintFor(key) : "Hint: " + hintFor(key);
+        li.appendChild(title);
+        li.appendChild(sub);
+        el.list.appendChild(li);
+      });
+    }
+
+    return {
+      // Call once from init()
+      init: function () {
+        el.btn = document.getElementById("endings-btn");
+        el.panel = document.getElementById("endings-panel");
+        el.close = document.getElementById("endings-close");
+        el.list = document.getElementById("endings-list");
+        el.startFact = document.getElementById("start-fact");
+        el.endFact = document.getElementById("end-fact");
+        el.endNew = document.getElementById("end-new");
+        el.endCount = document.getElementById("end-count");
+        el.tutorial = document.getElementById("tutorial-hint");
+        el.sky = document.getElementById("sky-tint");
+
+        if (el.btn && el.panel) el.btn.addEventListener("click", function () {
+          renderGallery();
+          el.panel.classList.remove("hidden");
+        });
+        if (el.close && el.panel) el.close.addEventListener("click", function () {
+          el.panel.classList.add("hidden");
+        });
+        if (el.panel) el.panel.addEventListener("click", function (e) {
+          if (e.target === el.panel) el.panel.classList.add("hidden"); // click outside
+        });
+        if (el.startFact) el.startFact.textContent = "Did you know? " + randomFact();
+        renderGallery();
+      },
+
+      // Sky tint follows the week
+      setSky: function (week) {
+        if (!el.sky) return;
+        el.sky.style.background = SKY[Math.floor(((week - 1) % 20) / 4)];
+      },
+
+      // First-run hint: shown until the player makes the first choice
+      onGameStart: function () {
+        if (!el.tutorial) return;
+        var seen = false;
+        try { seen = localStorage.getItem(TUTORIAL_SAVE) === "1"; } catch (e) {}
+        el.tutorial.classList.toggle("hidden", seen);
+      },
+      hideTutorial: function () {
+        if (!el.tutorial || el.tutorial.classList.contains("hidden")) return;
+        el.tutorial.classList.add("hidden");
+        try { localStorage.setItem(TUTORIAL_SAVE, "1"); } catch (e) {}
+      },
+
+      // End screen: record the ending, show counters and a fact
+      onGameEnd: function (endingKey) {
+        var found = loadFound();
+        var isNew = found.indexOf(endingKey) === -1;
+        if (isNew) { found.push(endingKey); saveFound(found); }
+        if (el.endNew) el.endNew.classList.toggle("hidden", !isNew);
+        if (el.endCount) el.endCount.textContent = "Endings found: " + found.length + " / " + ENDING_KEYS.length;
+        if (el.endFact) el.endFact.textContent = "Did you know? " + randomFact();
+        renderGallery();
+      }
+    };
+  })();
+
   // Initialize start screen and event listeners
   function init() {
     introTitle.textContent = INTRO.title;
@@ -754,6 +896,7 @@ if (sceneBg) {
     window.addEventListener("pointercancel", onPointerUp);
     window.addEventListener("keydown", onKeyDown);
 
+    Extras.init();
     renderStartBest();
     showScreen(startScreen);
     preloadBackgrounds();

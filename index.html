@@ -25,6 +25,13 @@
         <button id="settings-close" class="btn-primary" type="button">Close</button>
       </div>
     </div>
+    <div id="endings-panel" class="settings-panel hidden" role="dialog" aria-label="Endings">
+      <div class="settings-card">
+        <h2>Endings</h2>
+        <ul id="endings-list" class="endings-list"></ul>
+        <button id="endings-close" class="btn-primary" type="button">Close</button>
+      </div>
+    </div>
     <!-- Start Screen -->
     <section id="start-screen" class="screen active">
       <div class="mars-orb"></div>
@@ -42,7 +49,9 @@
         Skip consequence descriptions
       </label>
       <p id="start-best" class="best-score"></p>
+      <p id="start-fact" class="fact-line"></p>
       <button id="start-btn" class="btn-primary" type="button">Assume Command</button>
+      <button id="endings-btn" class="btn-ghost" type="button">Endings 0 / 9</button>
     </section>
 
     <!-- Game Screen -->
@@ -102,6 +111,11 @@
         </div>
       </main>
 
+      <div id="tutorial-hint" class="tutorial-hint hidden">
+        <strong>&larr; Swipe the card &rarr;</strong>
+        <span>Keep Oxygen, Food, Energy and Morale away from 0 and 100.</span>
+      </div>
+
       <footer class="choices-bar">
         <div id="choice-left" class="choice-label choice-left"></div>
         <div id="choice-right" class="choice-label choice-right"></div>
@@ -118,6 +132,9 @@
       <button id="continue-btn" class="btn-primary hidden" type="button">Continue</button>
       <button id="restart-btn" class="btn-primary" type="button">Try Again</button>
       <p id="end-best" class="best-score"></p>
+      <p id="end-new" class="new-ending hidden">New ending unlocked!</p>
+      <p id="end-count" class="best-score"></p>
+      <p id="end-fact" class="fact-line"></p>
     </section>
   </div>
 
