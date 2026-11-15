@@ -18,7 +18,7 @@ const CARDS_B = [
   },
   {
     id: "b_107",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_107.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, we're out of spices, so dinner tastes like wet cardboard. Use our emergency hot sauce or tell them to chew slower?",
@@ -35,7 +35,7 @@ const CARDS_B = [
   },
   {
     id: "b_108",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_108.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, we pried open the vanished captain's secret floor safe! Crack it open or leave the mystery intact?",
@@ -52,7 +52,7 @@ const CARDS_B = [
   },
   {
     id: "b_109",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_109.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, someone glued giant googly eyes onto every medical scanner in the infirmary. Scrape them off?",
@@ -86,7 +86,7 @@ const CARDS_B = [
   },
   {
     id: "b_111",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_111.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, the 14-minute radio lag ruined our chess tournament with Houston. Spend dish power on turn-based checkers?",
@@ -120,7 +120,7 @@ const CARDS_B = [
   },
   {
     id: "b_113",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_113.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, we picked up a faint beacon from the missing supply ship! Burn extra dish power to decode it?",
@@ -137,7 +137,7 @@ const CARDS_B = [
   },
   {
     id: "b_114",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_114.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, the kids started an underground market trading flavored oxygen mints. Bust the cartel or tax it?",
@@ -154,7 +154,7 @@ const CARDS_B = [
   },
   {
     id: "b_115",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_115.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, something is rhythmically knocking on the outer hull at 3 AM! Send an armed team or hide under the blankets?",
@@ -171,7 +171,7 @@ const CARDS_B = [
   },
   {
     id: "b_131",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_131.jpg",
     who: "Mateo Silva, Rover Pilot",
     text: "Captain, seeing Earth as a tiny blue dot makes me feel terribly lonely out here. Tell me straight: is it bad or good?",
@@ -205,7 +205,7 @@ const CARDS_B = [
   },
   {
     id: "b_133",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_133.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Mars air is 95% CO2 and barely 2% nitrogen. Pump extra argon into the hab to keep air pressure up?",
@@ -222,7 +222,7 @@ const CARDS_B = [
   },
   {
     id: "b_134",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_134.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, the Sun is moving between Earth and Mars, scrambling radio waves for two weeks. Send final supply pleas?",
@@ -239,7 +239,7 @@ const CARDS_B = [
   },
   {
     id: "b_135",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_135.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, colonists are begging Earth to launch a rescue ship next week. Explain orbital mechanics or keep hope alive?",
@@ -256,7 +256,7 @@ const CARDS_B = [
   },
   {
     id: "b_136",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_136.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, solar storm incoming. Line the shelter with lead plates or stack our water tanks around the walls?",
@@ -273,7 +273,7 @@ const CARDS_B = [
   },
   {
     id: "b_137",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_137.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, a Martian Sol is 39 minutes longer than an Earth day. Stretch our clocks or keep 24-hour schedules?",
@@ -290,7 +290,7 @@ const CARDS_B = [
   },
   {
     id: "b_138",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_138.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Phobos is passing across the Sun right now, dipping solar output for 30 seconds. Switch to backup cells?",
@@ -341,7 +341,7 @@ const CARDS_B = [
   },
   {
     id: "b_141",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_141.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, low gravity pushes body fluids toward our heads, flattening eyeballs and blurring vision. Buy reading glasses?",
@@ -375,7 +375,7 @@ const CARDS_B = [
   },
   {
     id: "b_143",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_143.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, our oxygen generator splits CO2 into O2 and carbon monoxide. Vent the CO outside or store it for fuel?",
@@ -443,7 +443,7 @@ const CARDS_B = [
   },
   {
     id: "b_147",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_147.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Martian dirt is rich in iron oxide—we can microwave it into solid bricks instead of using water cement!",
@@ -494,7 +494,7 @@ const CARDS_B = [
   },
   {
     id: "b_150",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_150.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, winter at the south pole is freezing a quarter of Mars's atmosphere into dry ice, dropping outside pressure!",
@@ -528,7 +528,7 @@ const CARDS_B = [
   },
   {
     id: "b_152",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_152.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, CO2 hit 0.4% in Command. Nobody is suffocating, yet decision scores are dropping. Boost scrubber fans?",
@@ -562,7 +562,7 @@ const CARDS_B = [
   },
   {
     id: "b_154",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_154.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, a slow marsquake has been vibrating the floor for twenty minutes! Shut down the reactor as a precaution?",
@@ -613,7 +613,7 @@ const CARDS_B = [
   },
   {
     id: "b_157",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_157.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, fine dust tracked past the airlock is chemically reactive—it's oxidizing rubber seals and irritating lungs.",
@@ -630,7 +630,7 @@ const CARDS_B = [
   },
   {
     id: "b_158",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_158.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, debris telemetry suggests the lost supply ship skipped off Mars's thin atmosphere during aerobraking.",
@@ -647,7 +647,7 @@ const CARDS_B = [
   },
   {
     id: "b_159",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_159.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, bones only rebuild when subjected to sharp impacts, and Mars's 0.38g isn't enough. Mandate jump-rope drills?",
@@ -664,7 +664,7 @@ const CARDS_B = [
   },
   {
     id: "b_160",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_160.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, my astronomy class noticed the vanished captain's last radio burst aimed straight at Deimos, not Earth.",
@@ -698,7 +698,7 @@ const CARDS_B = [
   },
   {
     id: "b_162",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_162.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, someone flushed a contraband paperback down Vacuum Toilet 3. Shut down the bathroom wing to clear it?",
@@ -715,7 +715,7 @@ const CARDS_B = [
   },
   {
     id: "b_163",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_163.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, we found your predecessor's slippers neatly lined up outside Airlock 2. Check the security cameras?",
@@ -732,7 +732,7 @@ const CARDS_B = [
   },
   {
     id: "b_164",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_164.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, single socks keep vanishing in the laundry module. Open up the lint trap or blame low-gravity gremlins?",
@@ -749,7 +749,7 @@ const CARDS_B = [
   },
   {
     id: "b_165",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_165.jpg",
     who: "Lucas Vance, Ice Miner",
     text: "Captain, Big Greg's snoring rattles the aluminum walls in Dorm 4. Move him to storage or hand out earplugs?",
@@ -783,7 +783,7 @@ const CARDS_B = [
   },
   {
     id: "b_167",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_167.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, turns out '500 boxes of rations' on the manifest meant 500 single granola bars. Stretch them with oatmeal?",
@@ -800,7 +800,7 @@ const CARDS_B = [
   },
   {
     id: "b_168",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_168.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, Leo locked himself inside the walk-in freezer trying to make snowballs. Cut the latch or pick the lock?",
@@ -817,7 +817,7 @@ const CARDS_B = [
   },
   {
     id: "b_169",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_169.jpg",
     who: "Mei Tanaka, Botanist",
     text: "Captain, Samir's prized 10-year-old sourdough starter is bubbling out of its jar and taking over the fridge. Bake it?",
@@ -834,7 +834,7 @@ const CARDS_B = [
   },
   {
     id: "b_170",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_170.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, people are hanging wet underwear over the warm reactor pipes to dry. Ban it or build a drying rack?",
@@ -851,7 +851,7 @@ const CARDS_B = [
   },
   {
     id: "b_171",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_171.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, Earth accidentally beamed a catchy children's song on repeat for six hours. Wipe the audio server?",
@@ -868,7 +868,7 @@ const CARDS_B = [
   },
   {
     id: "b_172",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_172.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, the supply ship's insurer wants a signed form confirming we didn't secretly steal the cargo. Reply?",
@@ -885,7 +885,7 @@ const CARDS_B = [
   },
   {
     id: "b_173",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_173.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, the medbay heater is weak, and everyone flinches at my freezing stethoscope. Spare power for a warmer?",
@@ -919,7 +919,7 @@ const CARDS_B = [
   },
   {
     id: "b_175",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_175.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, someone is trading pre-crash ketchup packets for extra shower tokens. Confiscate the stash?",
@@ -936,7 +936,7 @@ const CARDS_B = [
   },
   {
     id: "b_176",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_176.jpg",
     who: "Lucas Vance, Ice Miner",
     text: "Captain, in 0.38g anyone can dunk, so the miners bent the gym hoop and cracked a light panel. Fix it or lower the rim?",
@@ -953,7 +953,7 @@ const CARDS_B = [
   },
   {
     id: "b_177",
-    bg: "greenhouse",
+    bg: "command",
     image: "images/cards/b_177.jpg",
     who: "Mei Tanaka, Botanist",
     text: "Captain, the dusty cactus on your predecessor's desk just sprouted a bright pink flower. Keep it in Command?",
@@ -970,7 +970,7 @@ const CARDS_B = [
   },
   {
     id: "b_178",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_178.jpg",
     who: "Lucas Vance, Ice Miner",
     text: "Captain, Danny tried cutting his own bangs in the mirror and now looks like a barcode. Lend him a spare beanie?",
@@ -1004,7 +1004,7 @@ const CARDS_B = [
   },
   {
     id: "b_180",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_180.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, unfiltered Martian UV is fading all the posters in the lounge to ghostly pale. Tint the viewport?",
@@ -1021,7 +1021,7 @@ const CARDS_B = [
   },
   {
     id: "b_181",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_181.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, we found crates of beans that expired six months ago. Smell fine. Serve them as 'Vintage Earth Reserve'?",
@@ -1038,7 +1038,7 @@ const CARDS_B = [
   },
   {
     id: "b_182",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_182.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, the command console keeps throwing 'PC LOAD LETTER' errors like a 1990s office printer. Kick it or debug?",
@@ -1055,7 +1055,7 @@ const CARDS_B = [
   },
   {
     id: "b_183",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_183.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, the kids taped a paper smiley face onto the floor-cleaning robot and named it 'Sir Sweeps-a-Lot.' Keep it?",
@@ -1072,7 +1072,7 @@ const CARDS_B = [
   },
   {
     id: "b_184",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_184.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, night-shift heaters dip to save power, making morning bathroom visits brutal. Wire up heated seats?",
@@ -1089,7 +1089,7 @@ const CARDS_B = [
   },
   {
     id: "b_185",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_185.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, if I put sweetened soy milk outside the airlock for ten minutes, it freezes into soft-serve! Worth the air loss?",
@@ -1106,7 +1106,7 @@ const CARDS_B = [
   },
   {
     id: "b_186",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_186.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, we found an unsent birthday card to Earth in your predecessor's drawer. Transmit it on the next burst?",
@@ -1123,7 +1123,7 @@ const CARDS_B = [
   },
   {
     id: "b_187",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_187.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, dry hab air builds so much static that every handshake zaps like a taser. Boost the humidifiers?",
@@ -1157,7 +1157,7 @@ const CARDS_B = [
   },
   {
     id: "b_189",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_189.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, Mei harvested six precious pineapples. The crew is split on putting them on tonight's flatbread. Your call?",
@@ -1174,7 +1174,7 @@ const CARDS_B = [
   },
   {
     id: "b_190",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_190.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, Mars is passing through a comet trail tonight—shooting stars every minute! Dim the dome lights to watch?",
@@ -1191,7 +1191,7 @@ const CARDS_B = [
   },
   {
     id: "b_191",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_191.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, perihelion heat puffed up Mars's upper air right when our supply ship aerobraked. Scan for burn debris?",
@@ -1225,7 +1225,7 @@ const CARDS_B = [
   },
   {
     id: "b_193",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_193.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Mars's skies are super clear lately—without floating dust to trap sunlight, air temps are plunging! Boost heaters?",
@@ -1242,7 +1242,7 @@ const CARDS_B = [
   },
   {
     id: "b_194",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_194.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, sensors show extra ozone drifting from the north pole, so miners want to skip UV visors. Allow it?",
@@ -1259,7 +1259,7 @@ const CARDS_B = [
   },
   {
     id: "b_195",
-    bg: "greenhouse",
+    bg: "surface",
     image: "images/cards/b_195.jpg",
     who: "Mei Tanaka, Botanist",
     text: "Captain, winds blew bright dust off southern rocks, making them look like green plants from orbit! Drive out to check?",
@@ -1276,7 +1276,7 @@ const CARDS_B = [
   },
   {
     id: "b_196",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_196.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, a Martian year is 687 Earth days, so the kids are technically half their age! Celebrate Mars or Earth birthdays?",
@@ -1293,7 +1293,7 @@ const CARDS_B = [
   },
   {
     id: "b_197",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_197.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Mars swung far from the Sun, making sunlight 25% dimmer and chilling the planet 20 degrees. Dim the lab lights?",
@@ -1310,7 +1310,7 @@ const CARDS_B = [
   },
   {
     id: "b_198",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_198.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, Earth sent weather news: Venus has sulfuric acid rain, while we just have dry dust. Celebrate with extra rations?",
@@ -1327,7 +1327,7 @@ const CARDS_B = [
   },
   {
     id: "b_199",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_199.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, solar wind protons are slamming into Mars's upper air and kicking hydrogen into space. Shield the comms dish?",
@@ -1378,7 +1378,7 @@ const CARDS_B = [
   },
   {
     id: "b_202",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_202.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, Earth and Mars hit opposition soon—our closest approach in two years! Burn power for a massive data dump?",
@@ -1395,7 +1395,7 @@ const CARDS_B = [
   },
   {
     id: "b_203",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_203.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, smoke-sized dust motes stay suspended for months and sneak past airlock seals. Upgrade the hab filters?",
@@ -1446,7 +1446,7 @@ const CARDS_B = [
   },
   {
     id: "b_206",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_206.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, near the Sun, water shoots high into the sky where UV splits it into escaping atoms. Seal outdoor vents?",
@@ -1480,7 +1480,7 @@ const CARDS_B = [
   },
   {
     id: "b_208",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_208.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, kids asked why Earth has oceans, Venus has acid rain, and Mars froze if all three sit in the habitable zone. Debate?",
@@ -1497,7 +1497,7 @@ const CARDS_B = [
   },
   {
     id: "b_209",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_209.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, vented shower steam rises and chemically destroys Mars's upper-atmosphere ozone! Enforce short cold showers?",
@@ -1514,7 +1514,7 @@ const CARDS_B = [
   },
   {
     id: "b_210",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_210.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, harsh UV reactions kick upper-air atoms fast enough to beat Mars's gravity. Run our UV spectrometer tonight?",
@@ -1548,7 +1548,7 @@ const CARDS_B = [
   },
   {
     id: "b_212",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_212.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, 1970s Viking missions saw a dusty, warm Mars, so our backup radiators are oversized. Strip one for spare parts?",
@@ -1565,7 +1565,7 @@ const CARDS_B = [
   },
   {
     id: "b_213",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_213.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, hard to believe three billion years ago we could've fished in Martian rivers instead of eating algae. Serve soy fish?",
@@ -1582,7 +1582,7 @@ const CARDS_B = [
   },
   {
     id: "b_214",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_214.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, deuterium-heavy ice from the deep core melts slightly warmer, slush-clogging kitchen pipes! Flush with boiling water?",
@@ -1599,7 +1599,7 @@ const CARDS_B = [
   },
   {
     id: "b_215",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_215.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, Mars is so far from the Sun that space telescopes barely see our faint upper air. Fire a calibration laser?",
@@ -1616,7 +1616,7 @@ const CARDS_B = [
   },
   {
     id: "b_216",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_216.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, your predecessor's notes say a supply drone burned up when warm air expanded unexpectedly. Recover its black box?",
@@ -1684,7 +1684,7 @@ const CARDS_B = [
   },
   {
     id: "b_220",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_220.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, sudden afternoon heat puffed the atmosphere upward, dragging down our relay satellite! Fire its booster?",
@@ -1701,7 +1701,7 @@ const CARDS_B = [
   },
   {
     id: "b_221",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_221.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, because Earth and Mars only align closely every two years, no relief ship can launch for months. Tell the crew?",
@@ -1718,7 +1718,7 @@ const CARDS_B = [
   },
   {
     id: "b_222",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_222.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, Mars is so cold and dry nowadays that outdoor tools barely rust at all. Store spare air tanks outside?",
@@ -1735,7 +1735,7 @@ const CARDS_B = [
   },
   {
     id: "b_223",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_223.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, a rookie lifted his visor outside, assuming Mars's north-pole ozone surplus blocks UV rays. Treat his sunburn?",
@@ -1769,7 +1769,7 @@ const CARDS_B = [
   },
   {
     id: "b_225",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_225.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, astronomers use our Martian weather logs to model rocky exoplanets around distant stars. Stream live telemetry?",
@@ -1786,7 +1786,7 @@ const CARDS_B = [
   },
   {
     id: "b_226",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_226.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, swirling dust lifted micron-sized particles skyward, absorbing sunlight and warming the dome! Throttle heaters?",
@@ -1803,7 +1803,7 @@ const CARDS_B = [
   },
   {
     id: "b_227",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_227.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, sunlight splits water so light hydrogen escapes to space while oxygen rusts the soil red. Bake rust for O2?",
@@ -1820,7 +1820,7 @@ const CARDS_B = [
   },
   {
     id: "b_228",
-    bg: "greenhouse",
+    bg: "habitat",
     image: "images/cards/b_228.jpg",
     who: "Samir Patel, Colony Cook",
     text: "Captain, miners keep joking our soup is 'extra heavy' from Martian deuterium. Host an open-mic night to roast the menu?",
@@ -1837,7 +1837,7 @@ const CARDS_B = [
   },
   {
     id: "b_229",
-    bg: "surface",
+    bg: "medbay",
     image: "images/cards/b_229.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, without dusty air to trap heat, clear Martian nights plummet way below freezing. Issue electric blankets?",
@@ -1854,7 +1854,7 @@ const CARDS_B = [
   },
   {
     id: "b_230",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_230.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, Mars tilts like Earth, yet its thin air makes winter brutally cold. Turn the next cold snap into a survival drill?",
@@ -1888,7 +1888,7 @@ const CARDS_B = [
   },
   {
     id: "b_232",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_232.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, a solar flare is hurling fast protons straight into Mars's unshielded upper air. Power down external sensors?",
@@ -1922,7 +1922,7 @@ const CARDS_B = [
   },
   {
     id: "b_234",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_234.jpg",
     who: "Clara Lindqvist, Colony Teacher",
     text: "Captain, forecast says cool, clear skies with high clouds—way nicer than Venus's sulfuric acid rain! Hold outdoor gym?",
@@ -1990,7 +1990,7 @@ const CARDS_B = [
   },
   {
     id: "b_238",
-    bg: "surface",
+    bg: "engineering",
     image: "images/cards/b_238.jpg",
     who: "Elena Voss, Chief Engineer",
     text: "Captain, dark, wind-scoured sand in the south absorbs way more sunlight than dusty plains. Move a solar array there?",
@@ -2007,7 +2007,7 @@ const CARDS_B = [
   },
   {
     id: "b_239",
-    bg: "surface",
+    bg: "habitat",
     image: "images/cards/b_239.jpg",
     who: "Dr. Amara Okafor, Colony Doctor",
     text: "Captain, Earth shines like a bright star during opposition, and half the crew is up staring instead of sleeping. Curfew?",
@@ -2024,7 +2024,7 @@ const CARDS_B = [
   },
   {
     id: "b_240",
-    bg: "surface",
+    bg: "command",
     image: "images/cards/b_240.jpg",
     who: "Mission Control (Earth)",
     text: "Captain, Mars lost its oceans over four billion years; Earth asks if our water recyclers still hit 99%. Run a stress test?",
